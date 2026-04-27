@@ -1,0 +1,91 @@
+<!-- Remociones – Inventario forestal y residuos aprovechables -->
+<section id="screen-remociones" class="screen" aria-hidden="true">
+  <h2 class="screen-title">Remociones</h2>
+  <p class="muted screen-lead">Registro de acciones de captura o compensación de CO₂.</p>
+  <p class="official-mode-note">Modo oficial: los resultados se calculan en la pestaña Huella usando el motor backend auditable.</p>
+
+  <div class="subtab-row">
+    <button class="subtab active" data-sub="reforestacion" data-record-key="removals">Inventario forestal</button>
+    <button class="subtab" data-sub="captura-tecnologica" data-record-key="removals">Residuos Aprovechables</button>
+  </div>
+
+  <!-- Inventario Forestal -->
+  <div id="sub-reforestacion" class="subscreen active">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="removals"
+      data-factor-policy="backend-official"
+      data-carbon-formula="remocion_forestal"
+      data-default-captura-ha="1" data-default-densidad="1">
+      <thead>
+        <tr>
+          <th>Especie</th>
+          <th>Número de individuos</th>
+          <th>Captura total tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Especie"></td>
+          <td><input type="number" placeholder="0" min="0" data-carbon-field="N"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="total-label">Total</td>
+          <td colspan="2" data-carbon-total>0,000</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Registro de árboles plantados y su captura estimada de CO₂.</p>
+  </div>
+
+  <!-- Residuos Aprovechables (reciclaje) -->
+  <div id="sub-captura-tecnologica" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="removals"
+      data-factor-policy="backend-official"
+      data-carbon-formula="reciclaje"
+      data-default-fe-ch4-res="0.048" data-default-gwp-ch4="27">
+      <thead>
+        <tr>
+          <th>Residuos Aprovechables</th>
+          <th>Unidad</th>
+          <th>Aprovechamiento (valor)</th>
+          <th>Remociones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="masa_t"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Registra los residuos aprovechables con soporte de pesaje o reporte interno.</p>
+  </div>
+</section>
+

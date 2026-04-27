@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+{% include "carbon_footprint/partials/_head.html" %}
+<body data-api-base="/api/">
+
+  <div class="wrap">
+    {% include "carbon_footprint/partials/_header.html" %}
+
+    <div class="main">
+      <div class="workspace-stack">
+        <div class="panel">
+          {% include "carbon_footprint/partials/_menu.html" %}
+        </div>
+
+        <div class="content">
+          {% include "carbon_footprint/partials/screens/inicio/_screen_inicio.html" %}
+          {% include "carbon_footprint/partials/screens/alcance1/_screen_alcance1.html" %}
+          {% include "carbon_footprint/partials/screens/alcance2/_screen_alcance2.html" %}
+          {% include "carbon_footprint/partials/screens/remociones/_screen_remociones.html" %}
+          {% include "carbon_footprint/partials/screens/huella/_screen_huella.html" %}
+        </div>
+      </div>
+
+      {% include "carbon_footprint/partials/_sidebar.html" %}
+    </div>
+  </div>
+
+  <footer class="muted">Prototipo · Universidad ECCI</footer>
+
+</body>
+</html>

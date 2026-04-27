@@ -1,0 +1,97 @@
+<!-- Huella de Carbono – Resumen consolidado y reportes -->
+<section id="screen-huella" class="screen" aria-hidden="true">
+  <h2 class="screen-title">Huella de Carbono</h2>
+  <p class="muted screen-lead">Visualización consolidada de las emisiones y remociones.</p>
+
+  <div class="calc-run-panel">
+    <div class="calc-run-field">
+      <label for="official-period">Periodo</label>
+      <select id="official-period">
+        <option value="">Seleccione periodo</option>
+      </select>
+    </div>
+    <div class="calc-run-field">
+      <label for="official-campus">Sede (opcional)</label>
+      <select id="official-campus">
+        <option value="">Todas las sedes</option>
+      </select>
+    </div>
+    <div class="calc-run-actions">
+      <button id="run-official-calculation" type="button">Recalcular inventario oficial</button>
+    </div>
+  </div>
+  <p id="official-calc-status" class="muted screen-center"></p>
+
+  <div class="subtab-row">
+    <button class="subtab active" data-sub="resumen-general">Resumen general</button>
+    <button class="subtab" data-sub="graficos">Gráficos</button>
+    <button class="subtab" data-sub="historial">Histórico de corridas</button>
+    <button class="subtab" data-sub="recomendaciones">Recomendaciones</button>
+  </div>
+
+  <div id="sub-resumen-general" class="subscreen active">
+    <p class="muted screen-center">Totales de emisiones y remociones en tCO₂e.</p>
+    <div class="kpi-grid">
+      <article class="kpi-card">
+        <span class="kpi-label">Emisiones Directas</span>
+        <strong class="kpi-value" id="kpi-directas">--</strong>
+        <span class="kpi-unit">t CO₂e</span>
+      </article>
+      <article class="kpi-card">
+        <span class="kpi-label">Emisiones Indirectas</span>
+        <strong class="kpi-value" id="kpi-indirectas">--</strong>
+        <span class="kpi-unit">t CO₂e</span>
+      </article>
+      <article class="kpi-card kpi-card-positive">
+        <span class="kpi-label">Remociones</span>
+        <strong class="kpi-value" id="kpi-remociones">--</strong>
+        <span class="kpi-unit">t CO₂e</span>
+      </article>
+      <article class="kpi-card kpi-card-total">
+        <span class="kpi-label">Huella Neta</span>
+        <strong class="kpi-value" id="kpi-neta">--</strong>
+        <span class="kpi-unit">t CO₂e</span>
+      </article>
+    </div>
+    <div id="official-source-breakdown" class="source-breakdown"></div>
+  </div>
+
+  <div id="sub-graficos" class="subscreen">
+    <p class="muted screen-center">Vista comparativa por categorías.</p>
+    <div class="chart-card">
+      <div class="chart-row">
+        <span class="chart-label">Directas</span>
+        <div class="chart-track"><span class="chart-bar" id="bar-directas" style="width: 0%"></span></div>
+        <span class="chart-value" id="chart-directas">--</span>
+      </div>
+      <div class="chart-row">
+        <span class="chart-label">Indirectas</span>
+        <div class="chart-track"><span class="chart-bar" id="bar-indirectas" style="width: 0%"></span></div>
+        <span class="chart-value" id="chart-indirectas">--</span>
+      </div>
+      <div class="chart-row">
+        <span class="chart-label">Remociones</span>
+        <div class="chart-track"><span class="chart-bar chart-bar-green" id="bar-remociones" style="width: 0%"></span></div>
+        <span class="chart-value" id="chart-remociones">--</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="sub-historial" class="subscreen">
+    <div class="history-toolbar">
+      <p class="muted">Corridas persistidas del motor oficial para comparación y auditoría.</p>
+      <button id="refresh-history" type="button">Actualizar histórico</button>
+    </div>
+    <div id="official-run-history" class="history-list"></div>
+  </div>
+
+  <div id="sub-recomendaciones" class="subscreen">
+    <p class="muted screen-center">Sugerencias de reducción y compensación priorizadas.</p>
+    <ul class="recommendation-list">
+      <li>Optimizar consumo eléctrico en sedes con medición mensual y metas por área.</li>
+      <li>Priorizar viajes híbridos/virtuales para reducir desplazamientos frecuentes.</li>
+      <li>Escalar programas de aprovechamiento de residuos y trazabilidad de reciclaje.</li>
+      <li>Fortalecer estrategia de reforestación con monitoreo semestral de captura.</li>
+    </ul>
+  </div>
+</section>

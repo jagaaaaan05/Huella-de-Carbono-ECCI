@@ -1,0 +1,304 @@
+<!-- Alcance 2 / 3 – Emisiones Indirectas -->
+<section id="screen-procesos" class="screen" aria-hidden="true">
+  <h2 class="screen-title">Emisiones Indirectas</h2>
+  <p class="muted screen-lead">Registro de emisiones indirectas asociadas al consumo energético y servicios.</p>
+  <p class="official-mode-note">Modo oficial: los resultados se calculan en la pestaña Huella usando el motor backend auditable.</p>
+
+  <div class="subtab-row">
+    <button class="subtab active" data-sub="electricidad" data-record-key="electricity">Electricidad</button>
+    <button class="subtab" data-sub="viajes" data-record-key="flights">Viajes Aéreos</button>
+    <button class="subtab" data-sub="desplazamiento1" data-record-key="fieldPractice">Desplazamiento terrestre de empleados</button>
+    <button class="subtab" data-sub="desplazamiento2" data-record-key="groundTransport">Transporte terrestre de larga distancia</button>
+    <button class="subtab" data-sub="hospedaje" data-record-key="lodging">Hospedaje</button>
+    <button class="subtab" data-sub="consumo" data-record-key="paper">Consumo de Papel</button>
+    <button class="subtab" data-sub="residuos" data-record-key="waste">Residuos</button>
+  </div>
+
+  <!-- Electricidad -->
+  <div id="sub-electricidad" class="subscreen active">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="electricity" data-factor-policy="backend-official"
+      data-carbon-formula="electricidad" data-default-fe-kg-kwh="0.112">
+      <thead>
+        <tr>
+          <th>Descripción de la fuente</th>
+          <th>Energia Electrica</th>
+          <th>Unidad</th>
+          <th>Consumo (valor)</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="consumo_kwh"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Asegura que el consumo esté en kWh y corresponda al periodo seleccionado.</p>
+  </div>
+
+  <!-- Viajes Aéreos -->
+  <div id="sub-viajes" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="flights" data-factor-policy="backend-official"
+      data-carbon-formula="transporte_generico" data-default-fe="0.15">
+      <thead>
+        <tr>
+          <th>Viaje</th>
+          <th>Tipo de vuelo</th>
+          <th>Unidad</th>
+          <th>No. de pasajeros</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="dato_actividad"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Separa vuelos por ruta o tipo para trazabilidad del cálculo.</p>
+  </div>
+
+  <!-- Desplazamiento terrestre empleados -->
+  <div id="sub-desplazamiento1" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="fieldPractice" data-factor-policy="backend-official"
+      data-carbon-formula="transporte_generico" data-default-fe="0.12">
+      <thead>
+        <tr>
+          <th>Descripción de la fuente</th>
+          <th>Medio de transporte</th>
+          <th>Unidad (Km recorridos)</th>
+          <th>Valor</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="dato_actividad"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Registra desplazamientos por tipo de transporte y distancia recorrida.</p>
+  </div>
+
+  <!-- Transporte terrestre larga distancia -->
+  <div id="sub-desplazamiento2" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="groundTransport" data-factor-policy="backend-official"
+      data-carbon-formula="transporte_generico" data-default-fe="0.18">
+      <thead>
+        <tr>
+          <th>Descripción de la fuente</th>
+          <th>Medio de transporte / combustible</th>
+          <th>Unidad</th>
+          <th>Consumo (valor)</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="dato_actividad"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Incluye viajes de larga distancia asociados a la operación institucional.</p>
+  </div>
+
+  <!-- Hospedaje -->
+  <div id="sub-hospedaje" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="lodging" data-factor-policy="backend-official"
+      data-carbon-formula="transporte_generico" data-default-fe="0.02">
+      <thead>
+        <tr>
+          <th>Descripción de la fuente</th>
+          <th>Alojamiento y hospedaje</th>
+          <th>Unidad</th>
+          <th>No. de visitantes</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="dato_actividad"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Registra noches o estancias para estimar emisiones de hospedaje.</p>
+  </div>
+
+  <!-- Consumo de Papel -->
+  <div id="sub-consumo" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="paper" data-factor-policy="backend-official"
+      data-carbon-formula="papel_resmas" data-default-fe="1.35">
+      <thead>
+        <tr>
+          <th>Descripción de la fuente</th>
+          <th>Consumo de papel</th>
+          <th>Unidad</th>
+          <th>Consumo (valor)</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="resmas"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Considera únicamente consumo de papel del periodo reportado.</p>
+  </div>
+
+  <!-- Residuos -->
+  <div id="sub-residuos" class="subscreen">
+    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <table class="emisiones-table" data-record-key="waste" data-factor-policy="backend-official"
+      data-carbon-formula="residuos" data-default-fe="1">
+      <thead>
+        <tr>
+          <th>Descripción de la fuente</th>
+          <th>Tratamiento y/o disposicion final de residuos</th>
+          <th>Unidad</th>
+          <th>Disposicion (valor)</th>
+          <th>Emisiones totales tCO₂e</th>
+          <th>Incertidumbre actividad</th>
+          <th>Incertidumbre fuente</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="text" placeholder="Descripción"></td>
+          <td><select><option value="">Seleccione</option></select></td>
+          <td><select><option value="">Unidad</option></select></td>
+          <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="masa"></td>
+          <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+          <td><input type="text" placeholder="+/- 0,000%" disabled></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="total-label">Total</td>
+          <td data-carbon-total>0,000</td>
+          <td colspan="2">+/- 0,000%</td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class="action-buttons">
+      <button data-carbon-action="export">Exportar CSV</button>
+    </div>
+    <p class="muted screen-center">Clasifica correctamente los residuos según tratamiento final.</p>
+  </div>
+</section>
+

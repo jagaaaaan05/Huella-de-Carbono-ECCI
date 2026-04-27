@@ -1,0 +1,14 @@
+services:
+  web:
+    build: .
+    container_name: ecci-carbon-web
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    command: >
+      sh -c "python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn ecci_carbon_footprint_dj.wsgi:application --bind 0.0.0.0:8000 --workers 3"
