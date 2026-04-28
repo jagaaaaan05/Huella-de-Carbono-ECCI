@@ -9,6 +9,7 @@ from rest_framework import viewsets, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from .mixins import PeriodCampusFilterMixin
 from .models import (
     Campus, Period, EmissionCategory, EmissionSource, EmissionFactor,
     FuelType, WasteType, ExtinguisherType, PaperWeightCatalog,
@@ -159,37 +160,37 @@ class PaperWeightCatalogViewSet(BasePermissionViewSet):
 # === REGISTROS OPERATIVOS (CRUD PRINCIPALES) ==========
 # =====================================================
 
-class ElectricityConsumptionViewSet(BasePermissionViewSet):
+class ElectricityConsumptionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = ElectricityConsumption.objects.select_related('campus', 'period').all()
     serializer_class = ElectricityConsumptionSerializer
 
 
-class NaturalGasConsumptionViewSet(BasePermissionViewSet):
+class NaturalGasConsumptionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = NaturalGasConsumption.objects.select_related('campus', 'period').all()
     serializer_class = NaturalGasConsumptionSerializer
 
 
-class FuelConsumptionViewSet(BasePermissionViewSet):
+class FuelConsumptionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = FuelConsumption.objects.select_related('campus', 'period', 'fuel_type').all()
     serializer_class = FuelConsumptionSerializer
 
 
-class VehicleFleetConsumptionViewSet(BasePermissionViewSet):
+class VehicleFleetConsumptionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = VehicleFleetConsumption.objects.select_related('campus', 'period', 'fuel_type').all()
     serializer_class = VehicleFleetConsumptionSerializer
 
 
-class ExtinguisherRefillViewSet(BasePermissionViewSet):
+class ExtinguisherRefillViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = ExtinguisherRefill.objects.select_related('campus', 'period', 'ext_type').all()
     serializer_class = ExtinguisherRefillSerializer
 
 
-class WasteRecordViewSet(BasePermissionViewSet):
+class WasteRecordViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = WasteRecord.objects.select_related('campus', 'period', 'waste_type').all()
     serializer_class = WasteRecordSerializer
 
 
-class PaperConsumptionViewSet(BasePermissionViewSet):
+class PaperConsumptionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = PaperConsumption.objects.select_related('campus', 'period', 'size').all()
     serializer_class = PaperConsumptionSerializer
 
@@ -197,27 +198,27 @@ class PaperConsumptionViewSet(BasePermissionViewSet):
 
 
 
-class FlightViewSet(BasePermissionViewSet):
+class FlightViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = Flight.objects.select_related('period').all()
     serializer_class = FlightSerializer
 
 
-class FieldPracticeTripViewSet(BasePermissionViewSet):
+class FieldPracticeTripViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = FieldPracticeTrip.objects.select_related('campus', 'period').all()
     serializer_class = FieldPracticeTripSerializer
 
 
-class RemovalRecordViewSet(BasePermissionViewSet):
+class RemovalRecordViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = RemovalRecord.objects.select_related('campus', 'period').all()
     serializer_class = RemovalRecordSerializer
 
 
-class GroundTransportRecordViewSet(BasePermissionViewSet):
+class GroundTransportRecordViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = GroundTransportRecord.objects.select_related('campus', 'period').all()
     serializer_class = GroundTransportRecordSerializer
 
 
-class LodgingRecordViewSet(BasePermissionViewSet):
+class LodgingRecordViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     queryset = LodgingRecord.objects.select_related('campus', 'period').all()
     serializer_class = LodgingRecordSerializer
 

@@ -1,16 +1,34 @@
 // API fetch helpers – thin wrappers around fetch() with caching.
 import { catalogCache, getApiBase } from '../state.js';
 
-export const fetchCatalog = async (endpoint, { force = false } = {}) => {
+const buildCatalogKey = (endpoint, queryParams = {}) => {
+  const params = new URLSearchParams();
+  Object.entries(queryParams).forEach(([key, value]) => {
+    if (value !== undefined && value !== null && `${value}` !== '') {
+      params.set(key, `${value}`);
+    }
+  });
+  const query = params.toString();
+  return query ? `${endpoint}?${query}` : endpoint;
+};
+
+export const fetchCatalog = async (
+  endpoint,
+  { force = false, queryParams = {} } = {}
+) => {
   if (!endpoint) {
     return [];
   }
 
-  if (!force && catalogCache.has(endpoint)) {
-    return catalogCache.get(endpoint);
+  const catalogKey = buildCatalogKey(endpoint, queryParams);
+
+  if (!force && catalogCache.has(catalogKey)) {
+    return catalogCache.get(catalogKey);
   }
 
-  const response = await fetch(`${getApiBase()}/${endpoint}/`, {
+  const query = catalogKey.includes('?') ? catalogKey.slice(catalogKey.indexOf('?')) : '';
+
+  const response = await fetch(`${getApiBase()}/${endpoint}/${query}`, {
     headers: { Accept: 'application/json' },
   });
 
@@ -22,7 +40,7 @@ export const fetchCatalog = async (endpoint, { force = false } = {}) => {
 
   const data = await response.json();
   const results = Array.isArray(data) ? data : data.results || [];
-  catalogCache.set(endpoint, results);
+  catalogCache.set(catalogKey, results);
   return results;
 };
 
@@ -36,7 +54,7 @@ export const populateSelectElement = (select, options, config) => {
 
   const placeholder = document.createElement('option');
   placeholder.value = '';
-  placeholder.textContent = 'Seleccione';
+  placeholder.textContent = 'Selecciona una opción';
   select.appendChild(placeholder);
 
   options.forEach((item) => {

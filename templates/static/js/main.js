@@ -3,12 +3,12 @@ import { setApiBase } from './state.js';
 import {
   hydrateAllTables,
   initTableDataLoaders,
-} from './modules/loaders.js?v=20260427a';
-import { initCarbonTables } from './modules/calculations.js?v=20260427a';
-import { initDataEntryForm } from './modules/forms.js';
+} from './modules/loaders.js?v=20260428l';
+import { initCarbonTables } from './modules/calculations.js?v=20260428l';
 import { initDownloadButton } from './modules/download.js';
-import { initNavigation } from './modules/navigation.js';
-import { initOfficialInventory } from './modules/officialInventory.js';
+import { initNavigation } from './modules/navigation.js?v=20260428l';
+import { initOfficialInventory } from './modules/officialInventory.js?v=20260428l';
+import { initDataEntryForm } from './modules/forms.js?v=20260428l';
 
 document.addEventListener('DOMContentLoaded', () => {
   const body = document.body;
@@ -20,8 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
   hydrateAllTables();
   initCarbonTables();
   initTableDataLoaders();
-  initDataEntryForm();
   initDownloadButton();
   initNavigation();
   initOfficialInventory();
+  initDataEntryForm();
 });

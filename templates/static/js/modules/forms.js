@@ -6,6 +6,14 @@ import { TABLE_DATA_CONFIG } from '../config/tables.js';
 import { SELECT_SOURCE_CONFIG } from '../config/catalogs.js';
 import { fetchCatalog } from './api.js';
 import { populateTableFromRecords } from './loaders.js';
+import { initBulkUpload } from './forms/bulkUpload.js';
+import { extractErrorMessage } from './forms/errors.js';
+import {
+  attachPeriodBuilder,
+  ensurePeriodIdForPayload,
+  ensurePeriodIdInPayload,
+  ensurePeriodOption,
+} from './forms/periods.js';
 
 const FACTOR_SOURCE_BY_RECORD_KEY = {
   electricity: 'EI1',
@@ -39,6 +47,31 @@ export const getCsrfToken = () => {
   }
   const match = document.cookie.match(/csrftoken=([^;]+)/);
   return match ? decodeURIComponent(match[1]) : null;
+};
+
+const postRecord = async (endpoint, payload, csrfToken) => {
+  const response = await fetch(`${getApiBase()}/${endpoint}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      ...(csrfToken ? { 'X-CSRFToken': csrfToken } : {}),
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    return response;
+  }
+
+  let message = `No pudimos guardar el dato (${response.status}).`;
+  try {
+    const errorData = await response.json();
+    message = extractErrorMessage(errorData, message);
+  } catch (jsonError) {
+    console.error(jsonError);
+  }
+  throw new Error(message);
 };
 
 export const populateSelectFromSource = async (
@@ -81,6 +114,27 @@ export const populateSelectFromSource = async (
     option.textContent = labelFn(item);
     select.appendChild(option);
   });
+
+  if (fieldConfig.name === 'period_id') {
+    const createOption = document.createElement('option');
+    createOption.value = '__new__';
+    createOption.textContent = 'Crear un periodo nuevo...';
+    select.appendChild(createOption);
+
+    const currentOfficialPeriod = document.getElementById('official-period')?.value;
+    if (currentOfficialPeriod && Array.from(select.options).some((option) => option.value === currentOfficialPeriod)) {
+      select.value = currentOfficialPeriod;
+      return;
+    }
+  }
+
+  if (fieldConfig.name === 'campus_id') {
+    const currentCampus = document.getElementById('official-campus')?.value;
+    if (currentCampus && Array.from(select.options).some((option) => option.value === currentCampus)) {
+      select.value = currentCampus;
+      return;
+    }
+  }
 
   if (fieldConfig.default !== undefined) {
     const defaultValue = `${fieldConfig.default}`;
@@ -192,6 +246,10 @@ export const renderRecordForm = async (recordKey) => {
             populateSelectFromSource(input, field.source, field, { recordKey })
           );
         }
+
+        if (field.name === 'period_id') {
+          attachPeriodBuilder(wrapper, input);
+        }
       } else {
         input = document.createElement('input');
         input.type = field.type || 'text';
@@ -231,25 +289,38 @@ export const renderRecordForm = async (recordKey) => {
   }
 };
 
-export const extractErrorMessage = (errorResponse, fallback) => {
-  if (!errorResponse) {
-    return fallback;
+const updateRecordSelector = (recordKey) => {
+  const selector = document.getElementById('recordType');
+  const form = document.getElementById('recordForm');
+  if (!selector || !form) {
+    return;
   }
-  if (typeof errorResponse === 'string') {
-    return errorResponse;
+
+  if (!recordKey) {
+    selector.value = '';
+    form.hidden = true;
+    form.dataset.endpoint = '';
+    form.dataset.recordKey = '';
+    form.reset();
+    const status = form.querySelector('.form-status');
+    const fieldsWrapper = form.querySelector('[data-form-fields]');
+    if (fieldsWrapper) {
+      clearElement(fieldsWrapper);
+      fieldsWrapper.classList.remove('two-cols');
+    }
+    if (status) {
+      status.textContent = '';
+      status.classList.remove('success', 'error');
+    }
+    return;
   }
-  if (Array.isArray(errorResponse)) {
-    return errorResponse.join(' ');
+
+  if (selector.value === recordKey && !form.hidden) {
+    return;
   }
-  if (typeof errorResponse === 'object') {
-    return (
-      Object.entries(errorResponse)
-        .map(([key, value]) => `${key}: ${extractErrorMessage(value, '')}`)
-        .join(' ')
-        .trim() || fallback
-    );
-  }
-  return fallback;
+
+  selector.value = recordKey;
+  renderRecordForm(recordKey).catch((error) => console.error(error));
 };
 
 export const refreshTablesForRecord = (recordKey) => {
@@ -283,7 +354,7 @@ export const submitRecordForm = async (event) => {
     status.classList.remove('success', 'error');
   }
 
-  const payload = {};
+  let payload = {};
 
   config.fields.forEach((field) => {
     const input = form.elements[field.name];
@@ -321,36 +392,18 @@ export const submitRecordForm = async (event) => {
   const csrfToken = getCsrfToken();
   form.classList.add('loading');
   if (status) {
-    status.textContent = 'Enviando información…';
+    status.textContent = 'Guardando información...';
   }
 
   try {
-    const response = await fetch(`${getApiBase()}/${endpoint}/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        ...(csrfToken ? { 'X-CSRFToken': csrfToken } : {}),
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      let message = `Error al guardar el registro (${response.status})`;
-      try {
-        const errorData = await response.json();
-        message = extractErrorMessage(errorData, message);
-      } catch (jsonError) {
-        console.error(jsonError);
-      }
-      throw new Error(message);
-    }
+    payload = await ensurePeriodIdForPayload(form, payload, { getCsrfToken });
+    await postRecord(endpoint, payload, csrfToken);
 
     form.reset();
     catalogCache.delete(endpoint);
 
     if (status) {
-      status.textContent = 'Registro guardado correctamente.';
+      status.textContent = 'Dato guardado correctamente.';
       status.classList.remove('error');
       status.classList.add('success');
     }
@@ -406,4 +459,20 @@ export const initDataEntryForm = () => {
   }
 
   form.addEventListener('submit', submitRecordForm);
+
+  document.addEventListener('record-context-change', (event) => {
+    updateRecordSelector(event.detail?.recordKey || '');
+  });
+
+  updateRecordSelector(selector.value || '');
+  initBulkUpload({
+    getCsrfToken,
+    ensurePeriodIdInPayload: (payload, options = {}) =>
+      ensurePeriodIdInPayload(payload, {
+        ...options,
+        getCsrfToken,
+      }),
+    postRecord,
+    refreshTablesForRecord,
+  });
 };

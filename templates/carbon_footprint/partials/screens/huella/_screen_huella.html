@@ -1,13 +1,13 @@
 <!-- Huella de Carbono – Resumen consolidado y reportes -->
 <section id="screen-huella" class="screen" aria-hidden="true">
   <h2 class="screen-title">Huella de Carbono</h2>
-  <p class="muted screen-lead">Visualización consolidada de las emisiones y remociones.</p>
+  <p class="muted screen-lead">Consulta aquí el resumen consolidado de emisiones y remociones.</p>
 
   <div class="calc-run-panel">
     <div class="calc-run-field">
-      <label for="official-period">Periodo</label>
+      <label for="official-period">Periodo de análisis</label>
       <select id="official-period">
-        <option value="">Seleccione periodo</option>
+        <option value="">Selecciona un periodo</option>
       </select>
     </div>
     <div class="calc-run-field">
@@ -17,7 +17,7 @@
       </select>
     </div>
     <div class="calc-run-actions">
-      <button id="run-official-calculation" type="button">Recalcular inventario oficial</button>
+      <button id="run-official-calculation" type="button">Calcular inventario oficial</button>
     </div>
   </div>
   <p id="official-calc-status" class="muted screen-center"></p>
@@ -26,11 +26,12 @@
     <button class="subtab active" data-sub="resumen-general">Resumen general</button>
     <button class="subtab" data-sub="graficos">Gráficos</button>
     <button class="subtab" data-sub="historial">Histórico de corridas</button>
+    <button class="subtab" data-sub="subir-datos">Subir datos</button>
     <button class="subtab" data-sub="recomendaciones">Recomendaciones</button>
   </div>
 
   <div id="sub-resumen-general" class="subscreen active">
-    <p class="muted screen-center">Totales de emisiones y remociones en tCO₂e.</p>
+    <p class="muted screen-center">Totales del periodo expresados en tCO₂e.</p>
     <div class="kpi-grid">
       <article class="kpi-card">
         <span class="kpi-label">Emisiones Directas</span>
@@ -57,7 +58,7 @@
   </div>
 
   <div id="sub-graficos" class="subscreen">
-    <p class="muted screen-center">Vista comparativa por categorías.</p>
+    <p class="muted screen-center">Comparación visual por categorías.</p>
     <div class="chart-card">
       <div class="chart-row">
         <span class="chart-label">Directas</span>
@@ -79,14 +80,80 @@
 
   <div id="sub-historial" class="subscreen">
     <div class="history-toolbar">
-      <p class="muted">Corridas persistidas del motor oficial para comparación y auditoría.</p>
-      <button id="refresh-history" type="button">Actualizar histórico</button>
+      <p class="muted">Revisa ejecuciones anteriores para comparar resultados y trazabilidad.</p>
+      <button id="refresh-history" type="button">Actualizar historial</button>
     </div>
     <div id="official-run-history" class="history-list"></div>
   </div>
 
+  <div id="sub-subir-datos" class="subscreen">
+    <p class="muted">Carga datos operativos y asígnalos al periodo correcto. Si el periodo no existe, se creará automáticamente.</p>
+    <div class="form-card">
+      <p class="muted"><strong>Ruta:</strong> Huella &gt; Subir datos &gt; Carga individual</p>
+      <div class="form-field">
+        <label for="recordType">¿Qué tipo de dato deseas registrar?</label>
+        <select id="recordType" class="form-select">
+          <option value="">Selecciona una opción</option>
+          <option value="fuelStationary">Combustibles (fuentes estacionarias)</option>
+          <option value="fuelMobile">Combustibles (fuentes móviles)</option>
+          <option value="extinguisherRefill">Emisiones fugitivas</option>
+          <option value="electricity">Electricidad</option>
+          <option value="flights">Viajes aéreos</option>
+          <option value="fieldPractice">Desplazamiento terrestre de empleados</option>
+          <option value="groundTransport">Transporte terrestre larga distancia</option>
+          <option value="lodging">Hospedaje</option>
+          <option value="paper">Consumo de papel</option>
+          <option value="waste">Residuos</option>
+          <option value="removals">Remociones</option>
+        </select>
+      </div>
+
+      <form id="recordForm" class="api-form" hidden>
+        <div class="form-grid" data-form-fields></div>
+        <div class="form-actions">
+          <button type="submit">Guardar dato</button>
+          <button type="button" data-reset>Limpiar formulario</button>
+        </div>
+        <p class="form-status" aria-live="polite"></p>
+      </form>
+    </div>
+
+    <div class="form-card bulk-upload-card">
+      <h4>Carga masiva</h4>
+      <p class="muted"><strong>Ruta:</strong> Huella &gt; Subir datos &gt; Carga masiva</p>
+      <p class="muted">Sube un archivo CSV o XLSX. Puedes indicar <strong>record_type</strong> por fila o elegir un tipo único para todo el archivo.</p>
+      <div class="form-grid two-cols">
+        <div class="form-field">
+          <label for="bulkRecordType">Tipo de registro para todas las filas (opcional)</label>
+          <select id="bulkRecordType" class="form-select">
+            <option value="">Usar valor de la columna record_type</option>
+            <option value="fuelStationary">Combustibles (fuentes estacionarias)</option>
+            <option value="fuelMobile">Combustibles (fuentes móviles)</option>
+            <option value="extinguisherRefill">Emisiones fugitivas</option>
+            <option value="electricity">Electricidad</option>
+            <option value="flights">Viajes aéreos</option>
+            <option value="fieldPractice">Desplazamiento terrestre de empleados</option>
+            <option value="groundTransport">Transporte terrestre larga distancia</option>
+            <option value="lodging">Hospedaje</option>
+            <option value="paper">Consumo de papel</option>
+            <option value="waste">Residuos</option>
+            <option value="removals">Remociones</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="bulkUploadFile">Archivo a cargar</label>
+          <input id="bulkUploadFile" type="file" accept=".csv,.xlsx,.xls" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button id="bulkUploadRun" type="button">Procesar archivo</button>
+      </div>
+      <p id="bulkUploadStatus" class="form-status" aria-live="polite"></p>
+    </div>
+  </div>
+
   <div id="sub-recomendaciones" class="subscreen">
-    <p class="muted screen-center">Sugerencias de reducción y compensación priorizadas.</p>
+    <p class="muted screen-center">Acciones recomendadas para reducir y compensar emisiones.</p>
     <ul class="recommendation-list">
       <li>Optimizar consumo eléctrico en sedes con medición mensual y metas por área.</li>
       <li>Priorizar viajes híbridos/virtuales para reducir desplazamientos frecuentes.</li>

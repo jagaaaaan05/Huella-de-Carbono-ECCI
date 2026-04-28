@@ -75,7 +75,7 @@ const setColumnWidths = (worksheet, headers, rows) => {
 
 export const downloadData = async () => {
   if (!window.ExcelJS) {
-    alert('No fue posible cargar el exportador de Excel. Recarga la página e intenta nuevamente.');
+    alert('No pudimos cargar el exportador de Excel. Por favor recarga la página e inténtalo de nuevo.');
     return;
   }
 
@@ -85,7 +85,7 @@ export const downloadData = async () => {
     .filter(Boolean);
 
   if (!tableData.length) {
-    alert('No hay datos diligenciados en las tablas para exportar.');
+    alert('Aún no hay datos en las tablas para exportar.');
     return;
   }
 
@@ -119,7 +119,7 @@ export const downloadData = async () => {
     URL.revokeObjectURL(url);
   } catch (error) {
     console.error(error);
-    alert('No fue posible generar el archivo Excel. Intenta nuevamente.');
+    alert('No pudimos generar el archivo Excel en este momento. Intenta nuevamente.');
   }
 };
 

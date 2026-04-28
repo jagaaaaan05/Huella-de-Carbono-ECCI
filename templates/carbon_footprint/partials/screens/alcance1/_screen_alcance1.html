@@ -1,20 +1,20 @@
 <!-- Alcance 1 – Emisiones Directas -->
 <section id="screen-emisiones" class="screen" aria-hidden="true">
   <h2 class="screen-title">Emisiones Directas</h2>
-  <p class="muted screen-lead">Vista operativa de referencia para consumos y exportación de datos.</p>
-  <p class="official-mode-note">Modo oficial: los resultados se calculan en la pestaña Huella usando el motor backend auditable.</p>
+  <p class="muted screen-lead">Registra aquí las fuentes de emisiones directas de tu operación.</p>
+  <p class="official-mode-note">Recuerda: el resultado oficial se genera en la pestaña Huella con el motor auditable.</p>
 
   <div class="subtab-row">
-    <button class="subtab active" data-sub="combustibles1" data-record-key="fuelStationary">Consumo de combustibles (Fuentes Estacionarias)</button>
-    <button class="subtab" data-sub="combustibles2" data-record-key="fuelMobile">Consumo de combustibles (Fuentes Móviles)</button>
+    <button class="subtab active" data-sub="combustibles1" data-record-key="fuelStationary">Combustibles en fuentes estacionarias</button>
+    <button class="subtab" data-sub="combustibles2" data-record-key="fuelMobile">Combustibles en fuentes móviles</button>
     <button class="subtab" data-sub="procesos">Procesos Industriales</button>
-    <button class="subtab" data-sub="emisiones1" data-record-key="extinguisherRefill">Emisiones Fugitivas</button>
-    <button class="subtab" data-sub="emisiones2">Emisiones por Lubricantes</button>
+    <button class="subtab" data-sub="emisiones1" data-record-key="extinguisherRefill">Emisiones fugitivas</button>
+    <button class="subtab" data-sub="emisiones2">Emisiones por lubricantes</button>
   </div>
 
   <!-- Combustión Estacionaria -->
   <div id="sub-combustibles1" class="subscreen active">
-    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <p class="subscreen-lead">Completa los datos de actividad y revisa el resultado estimado.</p>
     <table class="emisiones-table" data-record-key="fuelStationary" data-carbon-formula="combustion_estacionaria" data-factor-policy="backend-official"
       data-default-fe-co2="1" data-default-fe-ch4="1" data-default-fe-n2o="1">
       <thead>
@@ -30,8 +30,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" placeholder="Descripción"></td>
-          <td><select><option value="">Seleccione</option></select></td>
+          <td><input type="text" placeholder="Describe la fuente"></td>
+          <td><select><option value="">Selecciona una opción</option></select></td>
           <td><select><option value="">Unidad</option></select></td>
           <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="A_m3"></td>
           <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
@@ -48,14 +48,14 @@
       </tfoot>
     </table>
     <div class="action-buttons">
-      <button data-carbon-action="export">Exportar CSV</button>
+      <button data-carbon-action="export">Descargar CSV</button>
     </div>
-    <p class="muted screen-center">Verifica combustible y unidad antes de ejecutar la corrida oficial en Huella.</p>
+    <p class="muted screen-center">Verifica combustible y unidad antes de ejecutar el cálculo oficial.</p>
   </div>
 
   <!-- Combustión Móvil -->
   <div id="sub-combustibles2" class="subscreen">
-    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <p class="subscreen-lead">Completa los datos de actividad y revisa el resultado estimado.</p>
     <table class="emisiones-table" data-record-key="fuelMobile" data-carbon-formula="combustion_movil" data-factor-policy="backend-official"
       data-default-fe-co2="1" data-default-fe-ch4="1" data-default-fe-n2o="1">
       <thead>
@@ -71,8 +71,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" placeholder="Descripción"></td>
-          <td><select><option value="">Seleccione</option></select></td>
+          <td><input type="text" placeholder="Describe la fuente"></td>
+          <td><select><option value="">Selecciona una opción</option></select></td>
           <td><select><option value="">Unidad</option></select></td>
           <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="A_litros"></td>
           <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
@@ -89,14 +89,14 @@
       </tfoot>
     </table>
     <div class="action-buttons">
-      <button data-carbon-action="export">Exportar CSV</button>
+      <button data-carbon-action="export">Descargar CSV</button>
     </div>
     <p class="muted screen-center">Registra cada vehículo en una fila separada para mayor precisión.</p>
   </div>
 
   <!-- Procesos Industriales -->
   <div id="sub-procesos" class="subscreen">
-    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <p class="subscreen-lead">Completa los datos de actividad y revisa el resultado estimado.</p>
     <table class="emisiones-table" data-carbon-formula="procesos_industriales" data-default-fe="1" data-factor-policy="backend-official">
       <thead>
         <tr>
@@ -111,8 +111,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" placeholder="Descripción"></td>
-          <td><select><option value="">Seleccione</option></select></td>
+          <td><input type="text" placeholder="Describe la fuente"></td>
+          <td><select><option value="">Selecciona una opción</option></select></td>
           <td><select><option value="">Unidad</option></select></td>
           <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="Q"></td>
           <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
@@ -129,14 +129,14 @@
       </tfoot>
     </table>
     <div class="action-buttons">
-      <button data-carbon-action="export">Exportar CSV</button>
+      <button data-carbon-action="export">Descargar CSV</button>
     </div>
     <p class="muted screen-center">Usa factores de emisión validados para cada tipo de proceso.</p>
   </div>
 
   <!-- Emisiones Fugitivas -->
   <div id="sub-emisiones1" class="subscreen">
-    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <p class="subscreen-lead">Completa los datos de actividad y revisa el resultado estimado.</p>
     <table class="emisiones-table" data-record-key="extinguisherRefill"
       data-factor-policy="backend-official"
       data-carbon-formula="fugitivas" data-default-gwp="1">
@@ -153,8 +153,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" placeholder="Descripción"></td>
-          <td><select><option value="">Seleccione</option></select></td>
+          <td><input type="text" placeholder="Describe la fuente"></td>
+          <td><select><option value="">Selecciona una opción</option></select></td>
           <td><select><option value="">Unidad</option></select></td>
           <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="m_kg"></td>
           <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
@@ -171,14 +171,14 @@
       </tfoot>
     </table>
     <div class="action-buttons">
-      <button data-carbon-action="export">Exportar CSV</button>
+      <button data-carbon-action="export">Descargar CSV</button>
     </div>
     <p class="muted screen-center">Confirma el agente extintor y su masa recargada.</p>
   </div>
 
   <!-- Lubricantes -->
   <div id="sub-emisiones2" class="subscreen">
-    <p class="subscreen-lead">Emisiones biogénicas antropogénicas</p>
+    <p class="subscreen-lead">Completa los datos de actividad y revisa el resultado estimado.</p>
     <table class="emisiones-table" data-carbon-formula="lubricantes" data-default-fe="1" data-factor-policy="backend-official">
       <thead>
         <tr>
@@ -193,8 +193,8 @@
       </thead>
       <tbody>
         <tr>
-          <td><input type="text" placeholder="Descripción"></td>
-          <td><select><option value="">Seleccione</option></select></td>
+          <td><input type="text" placeholder="Describe la fuente"></td>
+          <td><select><option value="">Selecciona una opción</option></select></td>
           <td><select><option value="">Unidad</option></select></td>
           <td><input type="number" step="0.001" placeholder="0.000" data-carbon-field="actividad"></td>
           <td><input type="number" step="0.001" placeholder="0.000" disabled data-carbon-result></td>
@@ -211,7 +211,7 @@
       </tfoot>
     </table>
     <div class="action-buttons">
-      <button data-carbon-action="export">Exportar CSV</button>
+      <button data-carbon-action="export">Descargar CSV</button>
     </div>
     <p class="muted screen-center">Incluye solo consumo real de lubricantes del periodo analizado.</p>
   </div>

@@ -6,6 +6,17 @@ const DIRECT_PREFIX = 'ED';
 const INDIRECT_PREFIX = 'EI';
 const REMOVALS_CODE = 'RE1';
 
+const emitInventoryFilterChange = (periodId, campusId) => {
+  document.dispatchEvent(
+    new CustomEvent('inventory-filter-change', {
+      detail: {
+        period_id: periodId || '',
+        campus_id: campusId || '',
+      },
+    })
+  );
+};
+
 const setText = (id, value) => {
   const element = document.getElementById(id);
   if (element) {
@@ -112,7 +123,7 @@ const loadRunHistory = async () => {
       headers: { Accept: 'application/json' },
     });
     if (!response.ok) {
-      throw new Error(`No fue posible cargar histórico (${response.status}).`);
+      throw new Error(`No pudimos cargar el historial (${response.status}).`);
     }
     const data = await response.json();
     const runs = Array.isArray(data) ? data : data.results || [];
@@ -166,7 +177,7 @@ const runOfficialCalculation = async () => {
   }
 
   if (!periodSelect.value) {
-    status.textContent = 'Selecciona un periodo para ejecutar el cálculo oficial.';
+    status.textContent = 'Selecciona un periodo para ejecutar el inventario oficial.';
     return;
   }
 
@@ -178,7 +189,7 @@ const runOfficialCalculation = async () => {
     payload.campus_id = Number(campusSelect.value);
   }
 
-  status.textContent = 'Ejecutando cálculo oficial...';
+  status.textContent = 'Estamos ejecutando el cálculo oficial...';
 
   try {
     const response = await fetch(`${getApiBase()}/calculation-runs/`, {
@@ -191,14 +202,14 @@ const runOfficialCalculation = async () => {
     });
 
     if (!response.ok) {
-      throw new Error(`No fue posible calcular inventario (${response.status}).`);
+      throw new Error(`No pudimos calcular el inventario (${response.status}).`);
     }
 
     const result = await response.json();
     updateHuellaWidgets(result);
     await loadRunHistory();
     const warningCount = result.warnings?.length || 0;
-    status.textContent = `Inventario oficial actualizado. Incertidumbre global: +/- ${formatNumber(result.totals?.uncertainty_pct || 0)}%${warningCount ? ` · ${warningCount} advertencia(s)` : ''}`;
+    status.textContent = `Inventario oficial actualizado correctamente. Incertidumbre global: +/- ${formatNumber(result.totals?.uncertainty_pct || 0)}%${warningCount ? ` · ${warningCount} advertencia(s)` : ''}`;
   } catch (error) {
     console.error(error);
     status.textContent = error.message;
@@ -219,7 +230,7 @@ const loadSelectOptions = async () => {
       fetchCatalog('campus', { force: true }),
     ]);
 
-    periodSelect.innerHTML = '<option value="">Seleccione periodo</option>';
+    periodSelect.innerHTML = '<option value="">Selecciona un periodo</option>';
     periods.forEach((period) => {
       const option = document.createElement('option');
       option.value = `${period.id}`;
@@ -238,9 +249,11 @@ const loadSelectOptions = async () => {
     if (periods.length) {
       periodSelect.value = `${periods[0].id}`;
     }
+
+    emitInventoryFilterChange(periodSelect.value, campusSelect.value);
   } catch (error) {
     console.error(error);
-    setText('official-calc-status', 'No fue posible cargar periodos/campus para el cálculo oficial.');
+    setText('official-calc-status', 'No pudimos cargar los periodos o sedes para el cálculo oficial.');
   }
 };
 
@@ -256,6 +269,23 @@ export const initOfficialInventory = async () => {
   runButton.addEventListener('click', () => {
     runOfficialCalculation();
   });
+
+  const periodSelect = document.getElementById('official-period');
+  const campusSelect = document.getElementById('official-campus');
+
+  if (periodSelect) {
+    periodSelect.addEventListener('change', () => {
+      emitInventoryFilterChange(periodSelect.value, campusSelect?.value || '');
+      loadRunHistory();
+    });
+  }
+
+  if (campusSelect) {
+    campusSelect.addEventListener('change', () => {
+      emitInventoryFilterChange(periodSelect?.value || '', campusSelect.value);
+      loadRunHistory();
+    });
+  }
 
   const refreshHistoryButton = document.getElementById('refresh-history');
   if (refreshHistoryButton) {

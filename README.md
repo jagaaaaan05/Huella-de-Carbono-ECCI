@@ -220,10 +220,10 @@ Nota de ejecución actual:
 - Para despliegue productivo, activar autenticación/autorización estricta en los ViewSets.
 
 Flujo operativo oficial (frontend):
-- Las corridas de inventario se ejecutan únicamente desde `Huella` contra `/api/calculation-runs/`.
-- Las tablas operativas de pantallas de captura funcionan como vista de referencia/exportación.
-- En tablas con `data-factor-policy="backend-official"`, la interfaz queda en modo lectura y solo mantiene `Exportar CSV`.
-- El histórico auditable debe consultarse en `/api/calculation-runs-history/`.
+- Las corridas de inventario se ejecutan desde `Huella` contra `/api/calculation-runs/`.
+- Las tablas operativas de captura permiten edición directa, recálculo local y exportación CSV.
+- Los datos guardados por formulario individual o carga masiva se reflejan en tablas del mismo periodo/campus activo.
+- El histórico auditable se consulta en `/api/calculation-runs-history/`.
 
 ---
 

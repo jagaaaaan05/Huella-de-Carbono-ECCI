@@ -534,6 +534,16 @@ section.screen > .muted {
   background: #fff;
 }
 
+.bulk-upload-card {
+  border-color: rgba(0, 46, 93, 0.22);
+  background: linear-gradient(180deg, #ffffff, #f7fbff);
+}
+
+.bulk-upload-card h4 {
+  margin: 0 0 8px;
+  color: var(--ecci-blue);
+}
+
 .form-grid {
   display: grid;
   gap: 12px;
@@ -547,6 +557,17 @@ section.screen > .muted {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.period-builder {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  padding: 10px;
+  border: 1px dashed #c9d7e8;
+  border-radius: 10px;
+  background: #f8fbff;
 }
 
 .form-field label {

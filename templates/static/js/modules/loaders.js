@@ -5,9 +5,70 @@ import {
   STATIC_HEADER_OPTIONS,
   UNIT_OPTIONS_BY_RECORD_KEY,
   UNIT_OPTIONS_BY_SUBSCREEN,
-} from '../config/catalogs.js?v=20260427a';
+} from '../config/catalogs.js';
 import { TABLE_DATA_CONFIG } from '../config/tables.js';
 import { fetchCatalog, populateSelectElement } from './api.js';
+
+let activeInventoryFilters = {};
+
+const STRICT_RULES_BY_SUBSCREEN = {
+  'sub-combustibles1': {
+    variable: 'A_m3',
+    units: ['gal', 'l', 'm3', 'kg'],
+  },
+  'sub-combustibles2': {
+    variable: 'A_litros',
+    units: ['gal', 'l', 'm3', 'kg'],
+  },
+  'sub-procesos': {
+    variable: 'Q',
+    units: ['kg', 't', 'm3', 'unidad'],
+  },
+  'sub-emisiones1': {
+    variable: 'm_kg',
+    units: ['kg'],
+  },
+  'sub-emisiones2': {
+    variable: 'actividad',
+    units: ['l', 'gal', 'kg'],
+  },
+  'sub-electricidad': {
+    variable: 'consumo_kwh',
+    units: ['kwh'],
+  },
+  'sub-viajes': {
+    variable: 'dato_actividad',
+    units: ['pasajero'],
+  },
+  'sub-desplazamiento1': {
+    variable: 'dato_actividad',
+    units: ['km'],
+  },
+  'sub-desplazamiento2': {
+    variable: 'dato_actividad',
+    units: ['km', 'pasajero_km', 'tonelada_km', 'l', 'gal'],
+  },
+  'sub-hospedaje': {
+    variable: 'dato_actividad',
+    units: ['noche_persona'],
+  },
+  'sub-consumo': {
+    variable: 'resmas',
+    units: ['resma'],
+  },
+  'sub-residuos': {
+    variable: 'masa',
+    units: ['kg', 't'],
+  },
+  'sub-reforestacion': {
+    variable: 'N',
+    integer: true,
+  },
+  'sub-captura-tecnologica': {
+    variable: 'masa_t',
+    units: ['t'],
+  },
+};
 
 const staticSelectConfig = (options) => ({
   valueField: 'value',
@@ -39,6 +100,83 @@ const resolveStaticCatalogForColumn = (table, header) => {
   }
 
   return staticSelectConfig(options);
+};
+
+const filterUnitOptions = (select, allowedUnits) => {
+  if (!select || !allowedUnits || !allowedUnits.length) {
+    return;
+  }
+
+  const allowed = new Set(allowedUnits);
+  Array.from(select.options).forEach((option) => {
+    if (option.value && !allowed.has(option.value)) {
+      option.remove();
+    }
+  });
+
+  if (select.value && !allowed.has(select.value)) {
+    select.value = '';
+  }
+};
+
+const enforceStrictRules = (table, headers) => {
+  const subId = table.closest('.subscreen')?.id;
+  const rule = subId ? STRICT_RULES_BY_SUBSCREEN[subId] : null;
+  if (!rule) {
+    return;
+  }
+
+  const variableInputs = table.querySelectorAll('tbody [data-carbon-field]');
+  variableInputs.forEach((input) => {
+    input.min = '0';
+    if (rule.integer) {
+      input.step = '1';
+    }
+    if (rule.variable && input.dataset.carbonField !== rule.variable) {
+      input.setCustomValidity(
+        `Variable no valida para esta tabla. Esperada: ${rule.variable}.`
+      );
+    } else {
+      input.setCustomValidity('');
+    }
+  });
+
+  if (!rule.units?.length) {
+    return;
+  }
+
+  const unitColumnIndex = headers.findIndex((header) => header.includes('unidad'));
+  if (unitColumnIndex < 0) {
+    return;
+  }
+
+  table
+    .querySelectorAll(`tbody tr td:nth-child(${unitColumnIndex + 1}) select`)
+    .forEach((select) => {
+      filterUnitOptions(select, rule.units);
+    });
+};
+
+const normaliseInventoryFilters = (raw = {}) => {
+  const queryParams = {};
+  if (raw.period_id !== undefined && raw.period_id !== null && `${raw.period_id}` !== '') {
+    queryParams.period_id = `${raw.period_id}`;
+  }
+  if (raw.campus_id !== undefined && raw.campus_id !== null && `${raw.campus_id}` !== '') {
+    queryParams.campus_id = `${raw.campus_id}`;
+  }
+  return queryParams;
+};
+
+const getActiveInventoryFilters = () => {
+  if (Object.keys(activeInventoryFilters).length) {
+    return activeInventoryFilters;
+  }
+
+  const periodId = document.getElementById('official-period')?.value || '';
+  const campusId = document.getElementById('official-campus')?.value || '';
+
+  return normaliseInventoryFilters({ period_id: periodId, campus_id: campusId });
 };
 
 export const hydrateTable = async (table) => {
@@ -80,6 +218,8 @@ export const hydrateTable = async (table) => {
       populateSelectElement(select, options, catalog);
     });
   }
+
+  enforceStrictRules(table, headers);
 };
 
 export const hydrateAllTables = () => {
@@ -155,7 +295,10 @@ export const populateTableFromRecords = async (table, config) => {
 
   let records = [];
   try {
-    records = await fetchCatalog(config.endpoint, { force: true });
+    records = await fetchCatalog(config.endpoint, {
+      force: true,
+      queryParams: getActiveInventoryFilters(),
+    });
   } catch (error) {
     console.error(error);
     return;
@@ -168,6 +311,7 @@ export const populateTableFromRecords = async (table, config) => {
     resetRowInputs(emptyRow);
     tbody.appendChild(emptyRow);
     await hydrateTable(table);
+    table.dispatchEvent(new Event('carbon:refresh'));
     return;
   }
 
@@ -197,6 +341,7 @@ export const populateTableFromRecords = async (table, config) => {
   });
 
   await hydrateTable(table);
+  table.dispatchEvent(new Event('carbon:refresh'));
 };
 
 export const initTableDataLoaders = () => {
@@ -231,6 +376,23 @@ export const initTableDataLoaders = () => {
     button.addEventListener('click', () => {
       loadForButton(button);
     });
+  });
+
+  const refreshAllRecordTables = async () => {
+    const tables = document.querySelectorAll('table[data-record-key]');
+    for (const table of tables) {
+      const recordKey = table.dataset.recordKey;
+      const config = recordKey ? TABLE_DATA_CONFIG[recordKey] : null;
+      if (!config) {
+        continue;
+      }
+      await populateTableFromRecords(table, config);
+    }
+  };
+
+  document.addEventListener('inventory-filter-change', (event) => {
+    activeInventoryFilters = normaliseInventoryFilters(event.detail || {});
+    refreshAllRecordTables().catch((error) => console.error(error));
   });
 
   document.querySelectorAll('.subtab.active[data-record-key]').forEach((button) => {
