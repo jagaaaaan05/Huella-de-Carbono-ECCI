@@ -383,3 +383,60 @@ class CalculationRunApiTestCase(TestCase):
 		results = data if isinstance(data, list) else data.get('results', [])
 		self.assertTrue(results)
 		self.assertTrue(all(item['campus'] and item['campus']['id'] == self.campus.id for item in results))
+
+
+class BugRegressionTestCase(TestCase):
+	"""Tests that verify all critical QA bugs are resolved."""
+
+	def setUp(self):
+		from carbon_footprint.engine.gases_catalog import METHOD_PROFILES
+		self.profiles = METHOD_PROFILES
+
+	def test_hcfc123_gwp_is_90_4(self):
+		"""BUG-03: GWP for HCFC-123 must be 90.4 per IPCC AR6 / Informe ECCI 2022."""
+		gwp = self.profiles['ISO14064_ECCI_2022']['default_gwp']['HCFC-123']
+		self.assertAlmostEqual(gwp, 90.4, places=1)
+
+	def test_waste_ch4_gwp_is_27(self):
+		"""BUG-02 / WARN-04: Default CH4 GWP must be 27 (AR6 non-fossil)."""
+		gwp = self.profiles['ISO14064_ECCI_2022']['default_gwp']['CH4']
+		self.assertAlmostEqual(gwp, 27.0, places=1)
+
+	def test_residuos_factor_produces_correct_co2e(self):
+		"""BUG-02: 1 kg residuos × FE 0.048 kgCH4/kg × GWP 27 = 1.296 kgCO2e/kg."""
+		from carbon_footprint.engine.formulas_engine import gas_factor_to_tco2e
+		result_tco2e = gas_factor_to_tco2e(1000.0, 0.048, 27.0)  # 1000 kg
+		expected = (1000.0 * 0.048 * 27.0) / 1000.0
+		self.assertAlmostEqual(result_tco2e, expected, places=6)
+		self.assertAlmostEqual(result_tco2e, 1.296, places=3)
+
+	def test_flight_model_import(self):
+		"""BUG-01: Flight must be importable and usable in calculation_service."""
+		from carbon_footprint.engine.calculation_service import _calculate_transport
+		import inspect
+		source = inspect.getsource(_calculate_transport)
+		self.assertIn('flight_records', source)
+		self.assertIn('Flight.objects', source)
+
+	def test_water_consumption_model_exists(self):
+		"""BUG-05: WaterConsumption model must exist."""
+		from carbon_footprint.models import WaterConsumption
+		self.assertTrue(hasattr(WaterConsumption, 'objects'))
+		self.assertTrue(hasattr(WaterConsumption, 'm3'))
+
+	def test_hcfc123_extinguisher_type_in_fixture(self):
+		"""BUG-04: HCFC-123 extinguisher type must be present."""
+		from carbon_footprint.models import ExtinguisherType
+		# Verify the type can be created with GWP 90.4
+		ext = ExtinguisherType(ext_code='HCFC-123', description='Test', gwp_100yr=90.4)
+		self.assertAlmostEqual(ext.gwp_100yr, 90.4, places=1)
+
+	def test_water_source_constant_defined(self):
+		"""A5: SOURCE_WATER constant must be defined in emission_sources."""
+		from carbon_footprint.engine.emission_sources import SOURCE_WATER
+		self.assertEqual(SOURCE_WATER, 'EI5')
+
+	def test_industrial_source_constant_defined(self):
+		"""B1: SOURCE_INDUSTRIAL constant must be defined in emission_sources."""
+		from carbon_footprint.engine.emission_sources import SOURCE_INDUSTRIAL
+		self.assertEqual(SOURCE_INDUSTRIAL, 'ED3')

@@ -6,26 +6,31 @@ from carbon_footprint.models import (
     ElectricityConsumption,
     ExtinguisherRefill,
     FieldPracticeTrip,
+    Flight,
     FuelConsumption,
     GroundTransportRecord,
+    IndustrialProcessEmission,
     LodgingRecord,
     NaturalGasConsumption,
     PaperConsumption,
     RemovalRecord,
     VehicleFleetConsumption,
     WasteRecord,
+    WaterConsumption,
 )
 
 from .emission_factors import factor_rows_to_payload, get_factor_rows
 from .emission_sources import (
     SOURCE_ELECTRICITY,
     SOURCE_FUGITIVE,
+    SOURCE_INDUSTRIAL,
     SOURCE_MOBILE,
     SOURCE_PAPER,
     SOURCE_REMOVALS,
     SOURCE_STATIONARY,
     SOURCE_TRANSPORT_LODGING,
     SOURCE_WASTE,
+    SOURCE_WATER,
 )
 from .formulas_engine import aggregate_tco2e, gas_factor_to_tco2e, removals_to_negative
 from .gases_catalog import DEFAULT_METHOD_PROFILE, resolve_gwp
@@ -478,6 +483,7 @@ def _calculate_transport(period_id: int, campus_id: int | None, method_profile: 
         LodgingRecord.objects.filter(period_id=period_id).select_related("period", "emission_factor"),
         campus_id,
     )
+    flight_records = Flight.objects.filter(period_id=period_id).select_related("period", "emission_factor")
     traces = []
     warnings = []
     total = 0.0
@@ -542,6 +548,18 @@ def _calculate_transport(period_id: int, campus_id: int | None, method_profile: 
             activity_variable="nights",
         )
 
+    for record in flight_records:
+        pax_km = (record.km or 0.0) * record.passengers
+        calc_generic(
+            record=record,
+            record_type="flight",
+            value=pax_km,
+            unit="pax-km",
+            year=record.period.year,
+            hints=["Vuelo", "Aéreo", "ICAO", record.description or ""],
+            activity_variable="pax_km",
+        )
+
     return SourceCalcResult(
         source_code=SOURCE_TRANSPORT_LODGING,
         source_name="Transporte y hospedaje",
@@ -585,13 +603,108 @@ def _calculate_paper(period_id: int, campus_id: int | None, method_profile: str)
             factor_selection_policy=factor_policy,
         )
         total += calc
-        weighted.append((calc, source_uncertainty(50.0, avg_factor_unc)))
+        weighted.append((calc, source_uncertainty(10.0, avg_factor_unc)))
         traces.append({"record_id": record.id, "record_type": "paper", "items": row_traces})
         warnings.extend(row_warnings)
 
     return SourceCalcResult(
         source_code=SOURCE_PAPER,
         source_name="Consumo de papel",
+        total_tco2e=total,
+        uncertainty_pct=inventory_uncertainty(weighted),
+        traces=traces,
+        warnings=warnings,
+    )
+
+
+def _calculate_industrial(period_id: int, campus_id: int | None, method_profile: str):
+    records = _apply_campus_filter(
+        IndustrialProcessEmission.objects.filter(period_id=period_id).select_related("period", "emission_factor"),
+        campus_id,
+    )
+    traces = []
+    warnings = []
+    total = 0.0
+    weighted = []
+
+    for record in records:
+        unit = normalize_unit(record.unit) or "kg"
+        rows, factor_policy = _resolve_rows_for_record(
+            record=record,
+            source_code=SOURCE_INDUSTRIAL,
+            year=record.period.year,
+            hints=[record.process_type, record.description],
+        )
+        if not rows:
+            warnings.append(f"No emission factor found for industrial process '{record.description}'.")
+            continue
+        calc, row_traces, row_warnings, avg_factor_unc = _calc_from_factor_rows(
+            source_code=SOURCE_INDUSTRIAL,
+            activity_value=record.activity,
+            activity_unit=unit,
+            factor_rows_payload=rows,
+            method_profile=method_profile,
+            formula_code="industrial_process_activity_x_factor",
+            activity_variable="activity",
+            factor_selection_policy=factor_policy,
+        )
+        total += calc
+        source_unc = source_uncertainty(0.5, avg_factor_unc)
+        weighted.append((calc, source_unc))
+        traces.append({"record_id": record.id, "record_type": "industrial_process", "items": row_traces})
+        warnings.extend(row_warnings)
+
+    return SourceCalcResult(
+        source_code=SOURCE_INDUSTRIAL,
+        source_name="Procesos industriales",
+        total_tco2e=total,
+        uncertainty_pct=inventory_uncertainty(weighted),
+        traces=traces,
+        warnings=warnings,
+    )
+
+
+def _calculate_water(period_id: int, campus_id: int | None, method_profile: str):
+    records = _apply_campus_filter(
+        WaterConsumption.objects.filter(period_id=period_id).select_related("period", "emission_factor"),
+        campus_id,
+    )
+    traces = []
+    warnings = []
+    total = 0.0
+    weighted = []
+
+    for record in records:
+        record_warnings = validate_non_negative(record.m3, "Water m3")
+        rows, factor_policy = _resolve_rows_for_record(
+            record=record,
+            source_code=SOURCE_WATER,
+            year=record.period.year,
+            hints=["Agua", "Agua potable", "EAAB"],
+        )
+        if not rows:
+            warnings.append("No emission factor found for water consumption.")
+            continue
+        calc, row_traces, row_warnings, avg_factor_unc = _calc_from_factor_rows(
+            source_code=SOURCE_WATER,
+            activity_value=record.m3,
+            activity_unit="m3",
+            factor_rows_payload=rows,
+            method_profile=method_profile,
+            formula_code="water_activity_x_factor",
+            activity_variable="m3",
+            factor_selection_policy=factor_policy,
+        )
+        total += calc
+        source_unc = source_uncertainty(5.0, avg_factor_unc)
+        weighted.append((calc, source_unc))
+        traces.append({"record_id": record.id, "record_type": "water", "items": row_traces})
+        warnings.extend(record_warnings)
+        warnings.extend(row_warnings)
+
+    return SourceCalcResult(
+        source_code=SOURCE_WATER,
+        source_name="Consumo de agua potable",
         total_tco2e=total,
         uncertainty_pct=inventory_uncertainty(weighted),
         traces=traces,
@@ -649,11 +762,13 @@ def calculate_inventory_run(
     source_results = [
         _calculate_stationary(period_id, campus_id, method_profile),
         _calculate_mobile(period_id, campus_id, method_profile),
+        _calculate_industrial(period_id, campus_id, method_profile),
         _calculate_fugitive(period_id, campus_id, method_profile),
         _calculate_electricity(period_id, campus_id, method_profile),
         _calculate_transport(period_id, campus_id, method_profile),
         _calculate_paper(period_id, campus_id, method_profile),
         _calculate_waste(period_id, campus_id, method_profile),
+        _calculate_water(period_id, campus_id, method_profile),
         _calculate_removals(period_id, campus_id),
     ]
 

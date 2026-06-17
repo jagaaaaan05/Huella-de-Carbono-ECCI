@@ -77,6 +77,11 @@
     "pk": 10,
     "fields": { "code": "RE1", "name": "Remociones", "unit_default": "tCO2e", "category": 3 }
   },
+  {
+    "model": "carbon_footprint.emissionsource",
+    "pk": 11,
+    "fields": { "code": "EI5", "name": "Consumo de agua potable", "unit_default": "m3", "category": 3 }
+  },
 
   {
     "model": "carbon_footprint.fueltype",
@@ -169,6 +174,11 @@
     "model": "carbon_footprint.extinguishertype",
     "pk": "HCFC-22",
     "fields": { "description": "Clorodifluorometano (HCFC-22)", "gwp_100yr": 1810 }
+  },
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HCFC-123",
+    "fields": { "description": "Diclorotrifluoroetano (HCFC-123)", "gwp_100yr": 90.4 }
   },
 
   {
@@ -280,11 +290,11 @@
       "source": 9,
       "agent": "Relleno sanitario",
       "gas": "CH4",
-      "factor_value": 1.2,
+      "factor_value": 0.048,
       "unit": "kg",
-      "gwp_100yr": 25,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "gwp_100yr": 27,
+      "source_ref": "IPCC 2006/GTC-ISO-TR-14069:2017",
+      "year_applic": 2022
     }
   },
   {
@@ -293,12 +303,12 @@
     "fields": {
       "source": 9,
       "agent": "Reciclaje",
-      "gas": "CO2",
-      "factor_value": 0.05,
+      "gas": "CH4",
+      "factor_value": 0.048,
       "unit": "kg",
-      "gwp_100yr": 1,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "gwp_100yr": 27,
+      "source_ref": "GTC-ISO-TR-14069:2017",
+      "year_applic": 2022
     }
   },
   {
@@ -310,9 +320,9 @@
       "gas": "CH4",
       "factor_value": 0.07,
       "unit": "kg",
-      "gwp_100yr": 25,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "gwp_100yr": 27,
+      "source_ref": "IPCC 2006",
+      "year_applic": 2022
     }
   },
   {
@@ -320,13 +330,55 @@
     "pk": 9,
     "fields": {
       "source": 8,
-      "agent": "Papel A4",
+      "agent": "Papel Bond",
       "gas": "CO2",
-      "factor_value": 1.3,
+      "factor_value": 1.05,
       "unit": "kg",
       "gwp_100yr": 1,
-      "source_ref": "Ecoinvent 2023",
-      "year_applic": 2023
+      "source_ref": "Informe ECCI 2022",
+      "year_applic": 2022
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 10,
+    "fields": {
+      "source": 3,
+      "agent": "Gas natural UPME",
+      "gas": "CO2",
+      "factor_value": 1.98,
+      "unit": "m3",
+      "gwp_100yr": 1,
+      "source_ref": "UPME FECOC 2016",
+      "year_applic": 2022
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 11,
+    "fields": {
+      "source": 6,
+      "agent": "Electricidad XM",
+      "gas": "CO2",
+      "factor_value": 0.112,
+      "unit": "kWh",
+      "gwp_100yr": 1,
+      "source_ref": "XM 2023",
+      "year_applic": 2022
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 12,
+    "fields": {
+      "source": 11,
+      "agent": "Agua potable Bogotá",
+      "gas": "CO2",
+      "factor_value": 0.345,
+      "unit": "m3",
+      "gwp_100yr": 1,
+      "source_ref": "GTC-ISO-TR-14069:2017",
+      "year_applic": 2022
     }
   }
 ]

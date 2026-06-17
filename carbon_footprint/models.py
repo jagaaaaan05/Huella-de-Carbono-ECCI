@@ -268,6 +268,24 @@ class PaperConsumption(models.Model):
     total_tco2e = models.FloatField(blank=True, null=True)
 
 
+class WaterConsumption(models.Model):
+    """
+    EI Cons_agua — Consumo de agua potable (Alcance 3).
+    """
+    period = models.ForeignKey(Period, on_delete=models.CASCADE, related_name="water_records")
+    campus = models.ForeignKey(Campus, on_delete=models.CASCADE, related_name="water_records")
+    description = models.CharField(max_length=150, blank=True, null=True)
+    m3 = models.FloatField()
+    emission_factor = models.ForeignKey(
+        EmissionFactor, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="water_usages"
+    )
+    total_tco2e = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.campus} - {self.m3} m³ ({self.period})"
+
+
 class Flight(models.Model):
     """
     EI Trans_y_hospedaje (viajes aéreos).

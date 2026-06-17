@@ -4,7 +4,7 @@ from .models import (
     FuelType, WasteType, ExtinguisherType, PaperWeightCatalog,
     ElectricityConsumption, NaturalGasConsumption, FuelConsumption,
     VehicleFleetConsumption, ExtinguisherRefill, WasteRecord,
-    PaperConsumption, Flight, GroundTransportRecord, LodgingRecord,
+    PaperConsumption, WaterConsumption, Flight, GroundTransportRecord, LodgingRecord,
     FieldPracticeTrip, RemovalRecord, CalculationRun, CalculationSourceTrace
 )
 
@@ -251,6 +251,27 @@ class PaperConsumptionSerializer(serializers.ModelSerializer):
     def validate_reams(self, value):
         return validate_positive(value, 'reams')
 
+
+
+class WaterConsumptionSerializer(serializers.ModelSerializer):
+    period = PeriodSerializer(read_only=True)
+    campus = CampusSerializer(read_only=True)
+    emission_factor = EmissionFactorSerializer(read_only=True)
+    period_id = serializers.PrimaryKeyRelatedField(queryset=Period.objects.all(), source='period', write_only=True)
+    campus_id = serializers.PrimaryKeyRelatedField(queryset=Campus.objects.all(), source='campus', write_only=True)
+    emission_factor_id = serializers.PrimaryKeyRelatedField(
+        queryset=EmissionFactor.objects.all(), source='emission_factor', write_only=True, required=False, allow_null=True
+    )
+
+    class Meta:
+        model = WaterConsumption
+        fields = [
+            'id', 'period', 'period_id', 'campus', 'campus_id', 'description',
+            'm3', 'emission_factor', 'emission_factor_id', 'total_tco2e'
+        ]
+
+    def validate_m3(self, value):
+        return validate_positive(value, 'm3')
 
 
 class FlightSerializer(serializers.ModelSerializer):
