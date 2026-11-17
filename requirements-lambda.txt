@@ -1,0 +1,3 @@
+# Dependencias del paquete que se sube a AWS Lambda.
+-r requirements.txt
+apig-wsgi>=2.20,<3.0

@@ -1,0 +1,67 @@
+name: Deploy to AWS
+
+# Construye la imagen, la publica en ECR y reinicia el servicio ECS.
+# Cada entorno de GitHub (staging, prod) define estas variables:
+#   AWS_REGION, AWS_DEPLOY_ROLE_ARN, ECR_REPOSITORY_URL, ECS_CLUSTER, ECS_SERVICE
+# Sus valores salen de los outputs de Terraform.
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Entorno a desplegar
+        type: choice
+        options: [ staging, prod ]
+        default: staging
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.event.inputs.environment || 'staging' }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+        cache: pip
+    - run: pip install -r requirements.txt
+    - run: python manage.py check
+    - run: python manage.py test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || 'staging' }}
+    env:
+      ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+        aws-region: ${{ vars.AWS_REGION }}
+
+    - id: ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Build and push image
+      run: |
+        docker build -t "${{ vars.ECR_REPOSITORY_URL }}:${GITHUB_SHA}" .
+        docker tag "${{ vars.ECR_REPOSITORY_URL }}:${GITHUB_SHA}" "${{ vars.ECR_REPOSITORY_URL }}:${ENVIRONMENT}"
+        docker push "${{ vars.ECR_REPOSITORY_URL }}:${GITHUB_SHA}"
+        docker push "${{ vars.ECR_REPOSITORY_URL }}:${ENVIRONMENT}"
+
+    - name: Restart ECS service
+      run: |
+        aws ecs update-service --cluster "${{ vars.ECS_CLUSTER }}" --service "${{ vars.ECS_SERVICE }}" --force-new-deployment > /dev/null
+        aws ecs wait services-stable --cluster "${{ vars.ECS_CLUSTER }}" --services "${{ vars.ECS_SERVICE }}"
