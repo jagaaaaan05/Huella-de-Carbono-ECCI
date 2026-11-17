@@ -1,0 +1,32 @@
+record_type;period_year;period_month;campus_id;description;fuel_type_id;unit;amount;km_traveled;m3;ext_type_id;kwh;origin;destination;passengers;round_trip;km_oneway;total_km;nights;size_id;reams;recycled;waste_type_id;rtype;activity_value;activity_unit;tco2e
+naturalGas;2025;;1;;GASNATURAL;;;;6050;;;;;;;;;;;;;;;;;
+naturalGas;2025;;2;;GASNATURAL;;;;1390;;;;;;;;;;;;;;;;;
+fuelStationary;2025;;1;Planta eléctrica de respaldo;ACPM;gal;105;;;;;;;;;;;;;;;;;;;
+fuelStationary;2025;;2;Cocina cafetería (GLP);GLP;kg;298,5;;;;;;;;;;;;;;;;;;;
+fuelMobile;2025;;1;Camionetas institucionales;GASOLINA;gal;2875,2;80200;;;;;;;;;;;;;;;;;;
+fuelMobile;2025;;1;Bus institucional;ACPM;gal;690;9400;;;;;;;;;;;;;;;;;;
+extinguisherRefill;2025;;1;Recarga extintores CO2;;kg;470;;;CO2;;;;;;;;;;;;;;;;
+extinguisherRefill;2025;;1;Recarga extintores R-123;;kg;205;;;HCFC-123;;;;;;;;;;;;;;;;
+extinguisherRefill;2025;;2;Aire acondicionado sala de cómputo;;kg;2,5;;;HFC-410A;;;;;;;;;;;;;;;;
+electricity;2025;;1;Medidor general;;;;;;;1512000;;;;;;;;;;;;;;;
+electricity;2025;;2;Medidor general;;;;;;;402300;;;;;;;;;;;;;;;
+electricity;2025;;3;Medidor general;;;;;;;255800;;;;;;;;;;;;;;;
+flights;2025;;;Congreso nacional;;;;;;;;Bogotá;Cali;20;true;;;;;;;;;;;
+flights;2025;;;Visita técnica;;;;;;;;Bogotá;Medellín-José María Córdova;15;true;;;;;;;;;;;
+flights;2025;;;Movilidad internacional;;;;;;;;Bogotá;Madrid;2;true;;;;;;;;;;;
+flights;2025;;;Solo ida;;;;;;;;Bogotá;Cartagena;6;false;;;;;;;;;;;
+fieldPractice;2025;;1;Salidas de campo;;;;;;;;Bogotá;Villa de Leyva;;;165;4620;;;;;;;;;
+groundTransport;2025;;1;Bus intermunicipal docentes;;pkm;24800;;;;;;;;;;;;;;;;;;;
+groundTransport;2025;;2;Transmilenio funcionarios;;pkm;112500;;;;;;;;;;;;;;;;;;;
+lodging;2025;;1;Hotel Cali congreso;;;;;;;;;;;;;;20;;;;;;;;
+lodging;2025;;2;Alojamiento y desayuno Medellín;;;;;;;;;;;;;;8;;;;;;;;
+paper;2025;;1;Administrativo;;;;;;;;;;;;;;;A4;720;false;;;;;
+paper;2025;;1;Reciclado;;;;;;;;;;;;;;;Carta;240;true;;;;;
+paper;2025;;3;Biblioteca;;;;;;;;;;;;;;;Oficio;130;false;;;;;
+waste;2025;;1;;;kg;30100;;;;;;;;;;;;;;;RESIDUO_RSU;;;;
+waste;2025;;1;;;kg;1760;;;;;;;;;;;;;;;RESIDUO_PEL;;;;
+waste;2025;;1;;;kg;2750;;;;;;;;;;;;;;;RESIDUO_ORG;;;;
+waste;2025;;3;;;kg;5800;;;;;;;;;;;;;;;RESIDUO_RSU;;;;
+removals;2025;;1;Cupressus lusitanica;;;;;;;;;;;;;;;;;;;forestal;80;arbol;
+removals;2025;;1;Aprovechamiento de residuos;;;;;;;;;;;;;;;;;;;reciclaje;4050;kg;
+removals;2025;;3;Certificado de compensación;;;;;;;;;;;;;;;;;;;compensacion;;;1,2

@@ -26,205 +26,332 @@
       "description": "Viajes, residuos, papel y bienes/servicios."
     }
   },
-
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 1,
-    "fields": { "code": "ED1", "name": "Combustibles estacionarios", "unit_default": "gal", "category": 1 }
+    "fields": {
+      "code": "ED1",
+      "name": "Combustibles estacionarios",
+      "unit_default": "gal",
+      "category": 1
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 2,
-    "fields": { "code": "ED2", "name": "Combustibles móviles", "unit_default": "gal", "category": 1 }
+    "fields": {
+      "code": "ED2",
+      "name": "Combustibles móviles",
+      "unit_default": "gal",
+      "category": 1
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 3,
-    "fields": { "code": "ED3", "name": "Procesos industriales", "unit_default": "kg", "category": 1 }
+    "fields": {
+      "code": "ED3",
+      "name": "Procesos industriales",
+      "unit_default": "kg",
+      "category": 1
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 4,
-    "fields": { "code": "ED4", "name": "Emisiones fugitivas", "unit_default": "kg", "category": 1 }
+    "fields": {
+      "code": "ED4",
+      "name": "Emisiones fugitivas",
+      "unit_default": "kg",
+      "category": 1
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 5,
-    "fields": { "code": "ED5", "name": "Lubricantes", "unit_default": "L", "category": 1 }
+    "fields": {
+      "code": "ED5",
+      "name": "Lubricantes",
+      "unit_default": "L",
+      "category": 1
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 6,
-    "fields": { "code": "EI1", "name": "Electricidad", "unit_default": "kWh", "category": 2 }
+    "fields": {
+      "code": "EI1",
+      "name": "Electricidad",
+      "unit_default": "kWh",
+      "category": 2
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 7,
-    "fields": { "code": "EI2", "name": "Transporte y hospedaje", "unit_default": "km", "category": 3 }
+    "fields": {
+      "code": "EI2",
+      "name": "Transporte y hospedaje",
+      "unit_default": "km",
+      "category": 3
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 8,
-    "fields": { "code": "EI3", "name": "Consumo de papel", "unit_default": "resmas", "category": 3 }
+    "fields": {
+      "code": "EI3",
+      "name": "Consumo de papel",
+      "unit_default": "resmas",
+      "category": 3
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 9,
-    "fields": { "code": "EI4", "name": "Residuos", "unit_default": "kg", "category": 3 }
+    "fields": {
+      "code": "EI4",
+      "name": "Residuos",
+      "unit_default": "kg",
+      "category": 3
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 10,
-    "fields": { "code": "RE1", "name": "Remociones", "unit_default": "tCO2e", "category": 3 }
+    "fields": {
+      "code": "RE1",
+      "name": "Remociones",
+      "unit_default": "tCO2e",
+      "category": 3
+    }
   },
   {
     "model": "carbon_footprint.emissionsource",
     "pk": 11,
-    "fields": { "code": "EI5", "name": "Consumo de agua potable", "unit_default": "m3", "category": 3 }
+    "fields": {
+      "code": "EI5",
+      "name": "Consumo de agua potable",
+      "unit_default": "m3",
+      "category": 3
+    }
   },
-
   {
     "model": "carbon_footprint.fueltype",
     "pk": "GASOLINA",
-    "fields": { "description": "Gasolina corriente" }
+    "fields": {
+      "description": "Gasolina corriente"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "ACPM",
-    "fields": { "description": "Diésel / ACPM" }
+    "fields": {
+      "description": "Diésel / ACPM"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "GASNATURAL",
-    "fields": { "description": "Gas natural vehicular" }
+    "fields": {
+      "description": "Gas natural vehicular"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "GLP",
-    "fields": { "description": "Gas licuado de petróleo (GLP)" }
+    "fields": {
+      "description": "Gas licuado de petróleo (GLP)"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "KEROSENE",
-    "fields": { "description": "Kerosene / Jet Fuel" }
+    "fields": {
+      "description": "Kerosene / Jet Fuel"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "BIODIESEL",
-    "fields": { "description": "Biodiésel B10" }
+    "fields": {
+      "description": "Biodiésel B10"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "ETANOL",
-    "fields": { "description": "Etanol anhidro" }
+    "fields": {
+      "description": "Etanol anhidro"
+    }
   },
   {
     "model": "carbon_footprint.fueltype",
     "pk": "CARBON",
-    "fields": { "description": "Carbón mineral" }
+    "fields": {
+      "description": "Carbón mineral"
+    }
   },
-
   {
     "model": "carbon_footprint.wastetype",
     "pk": "RESIDUO_RSU",
-    "fields": { "description": "Residuos sólidos ordinarios", "treatment": "Relleno sanitario" }
+    "fields": {
+      "description": "Residuos sólidos ordinarios",
+      "treatment": "Relleno sanitario"
+    }
   },
   {
     "model": "carbon_footprint.wastetype",
     "pk": "RESIDUO_REC",
-    "fields": { "description": "Residuos reciclables", "treatment": "Reciclaje" }
+    "fields": {
+      "description": "Residuos reciclables",
+      "treatment": "Reciclaje"
+    }
   },
   {
     "model": "carbon_footprint.wastetype",
     "pk": "RESIDUO_ORG",
-    "fields": { "description": "Residuos orgánicos", "treatment": "Compostaje" }
+    "fields": {
+      "description": "Residuos orgánicos",
+      "treatment": "Compostaje"
+    }
   },
   {
     "model": "carbon_footprint.wastetype",
     "pk": "RESIDUO_PEL",
-    "fields": { "description": "Residuos peligrosos", "treatment": "Disposición especial" }
+    "fields": {
+      "description": "Residuos peligrosos",
+      "treatment": "Disposición especial"
+    }
   },
-
   {
     "model": "carbon_footprint.extinguishertype",
     "pk": "CO2",
-    "fields": { "description": "Dióxido de carbono (CO₂)", "gwp_100yr": 1 }
-  },
-  {
-    "model": "carbon_footprint.extinguishertype",
-    "pk": "HFC-134a",
-    "fields": { "description": "1,1,1,2-Tetrafluoroetano (HFC-134a)", "gwp_100yr": 1430 }
-  },
-  {
-    "model": "carbon_footprint.extinguishertype",
-    "pk": "HFC-404A",
-    "fields": { "description": "Mezcla HFC-404A", "gwp_100yr": 3920 }
-  },
-  {
-    "model": "carbon_footprint.extinguishertype",
-    "pk": "HFC-410A",
-    "fields": { "description": "Mezcla HFC-410A", "gwp_100yr": 2088 }
-  },
-  {
-    "model": "carbon_footprint.extinguishertype",
-    "pk": "HFC-407C",
-    "fields": { "description": "Mezcla HFC-407C", "gwp_100yr": 1774 }
-  },
-  {
-    "model": "carbon_footprint.extinguishertype",
-    "pk": "HCFC-22",
-    "fields": { "description": "Clorodifluorometano (HCFC-22)", "gwp_100yr": 1810 }
+    "fields": {
+      "description": "Dióxido de carbono (CO₂)",
+      "gwp_100yr": 1
+    }
   },
   {
     "model": "carbon_footprint.extinguishertype",
     "pk": "HCFC-123",
-    "fields": { "description": "Diclorotrifluoroetano (HCFC-123)", "gwp_100yr": 90.4 }
+    "fields": {
+      "description": "Diclorotrifluoroetano (HCFC-123 / R-123)",
+      "gwp_100yr": 90.4
+    }
   },
-
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HFC-134a",
+    "fields": {
+      "description": "1,1,1,2-Tetrafluoroetano (HFC-134a)",
+      "gwp_100yr": 1530
+    }
+  },
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HFC-404A",
+    "fields": {
+      "description": "Mezcla HFC-404A",
+      "gwp_100yr": 3942.8
+    }
+  },
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HFC-410A",
+    "fields": {
+      "description": "Mezcla HFC-410A",
+      "gwp_100yr": 2255.5
+    }
+  },
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HFC-407C",
+    "fields": {
+      "description": "Mezcla HFC-407C",
+      "gwp_100yr": 1624.21
+    }
+  },
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HCFC-22",
+    "fields": {
+      "description": "Clorodifluorometano (HCFC-22)",
+      "gwp_100yr": 1960
+    }
+  },
+  {
+    "model": "carbon_footprint.extinguishertype",
+    "pk": "HFC-227ea",
+    "fields": {
+      "description": "Heptafluoropropano (HFC-227ea / FM-200)",
+      "gwp_100yr": 3600
+    }
+  },
   {
     "model": "carbon_footprint.paperweightcatalog",
     "pk": "A4",
-    "fields": { "kg_per_ream": 2.5 }
+    "fields": {
+      "kg_per_ream": 2.5
+    }
   },
   {
     "model": "carbon_footprint.paperweightcatalog",
     "pk": "Carta",
-    "fields": { "kg_per_ream": 2.4 }
+    "fields": {
+      "kg_per_ream": 2.4
+    }
   },
   {
     "model": "carbon_footprint.paperweightcatalog",
     "pk": "Oficio",
-    "fields": { "kg_per_ream": 2.6 }
+    "fields": {
+      "kg_per_ream": 2.6
+    }
   },
-
   {
     "model": "carbon_footprint.campus",
     "pk": 1,
-    "fields": { "name": "Sede Principal", "city": "Bogotá", "locality": "Teusaquillo", "area_m2": 12000 }
+    "fields": {
+      "name": "Sede Principal",
+      "city": "Bogotá",
+      "locality": "Teusaquillo",
+      "area_m2": 12000
+    }
   },
   {
     "model": "carbon_footprint.campus",
     "pk": 2,
-    "fields": { "name": "Sede Norte", "city": "Bogotá", "locality": "Usaquén", "area_m2": 8000 }
+    "fields": {
+      "name": "Sede Norte",
+      "city": "Bogotá",
+      "locality": "Usaquén",
+      "area_m2": 8000
+    }
   },
   {
     "model": "carbon_footprint.campus",
     "pk": 3,
-    "fields": { "name": "Sede Sur", "city": "Bogotá", "locality": "Bosa", "area_m2": 6000 }
+    "fields": {
+      "name": "Sede Sur",
+      "city": "Bogotá",
+      "locality": "Bosa",
+      "area_m2": 6000
+    }
   },
-
   {
     "model": "carbon_footprint.emissionfactor",
     "pk": 1,
     "fields": {
       "source": 1,
-      "agent": "Gasolina corriente",
+      "agent": "Diésel / ACPM",
       "gas": "CO2",
-      "factor_value": 2.271,
-      "unit": "L",
-      "gwp_100yr": 1,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "factor_value": 9.162,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
     }
   },
   {
@@ -233,12 +360,13 @@
     "fields": {
       "source": 1,
       "agent": "Diésel / ACPM",
-      "gas": "CO2",
-      "factor_value": 2.676,
-      "unit": "L",
-      "gwp_100yr": 1,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "gas": "CH4",
+      "factor_value": 1.16e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 10
     }
   },
   {
@@ -246,13 +374,14 @@
     "pk": 3,
     "fields": {
       "source": 1,
-      "agent": "Gas natural",
-      "gas": "CO2",
-      "factor_value": 1.9,
-      "unit": "m3",
-      "gwp_100yr": 1,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "agent": "Diésel / ACPM",
+      "gas": "N2O",
+      "factor_value": 5.9e-06,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 2
     }
   },
   {
@@ -260,32 +389,2674 @@
     "pk": 4,
     "fields": {
       "source": 1,
-      "agent": "GLP",
-      "gas": "CO2",
-      "factor_value": 1.51,
-      "unit": "kg",
-      "gwp_100yr": 1,
-      "source_ref": "IDEAM 2023",
-      "year_applic": 2023
+      "agent": "Diésel / ACPM",
+      "gas": "CO2_BIO",
+      "factor_value": 0.6882,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
     "pk": 5,
     "fields": {
-      "source": 6,
-      "agent": "Electricidad UPME",
+      "source": 1,
+      "agent": "Biodiésel B10",
       "gas": "CO2",
-      "factor_value": 0.144,
-      "unit": "kWh",
-      "gwp_100yr": 1,
-      "source_ref": "UPME/IDEAM 2023",
-      "year_applic": 2023
+      "factor_value": 9.162,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
     "pk": 6,
+    "fields": {
+      "source": 1,
+      "agent": "Biodiésel B10",
+      "gas": "CH4",
+      "factor_value": 1.16e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 10
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 7,
+    "fields": {
+      "source": 1,
+      "agent": "Biodiésel B10",
+      "gas": "N2O",
+      "factor_value": 5.9e-06,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 2
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 8,
+    "fields": {
+      "source": 1,
+      "agent": "Biodiésel B10",
+      "gas": "CO2_BIO",
+      "factor_value": 0.6882,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 9,
+    "fields": {
+      "source": 1,
+      "agent": "Gasolina corriente",
+      "gas": "CO2",
+      "factor_value": 6.8562,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.234
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 10,
+    "fields": {
+      "source": 1,
+      "agent": "Gasolina corriente",
+      "gas": "CH4",
+      "factor_value": 2.4e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 10
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 11,
+    "fields": {
+      "source": 1,
+      "agent": "Gasolina corriente",
+      "gas": "N2O",
+      "factor_value": 5e-06,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 2
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 12,
+    "fields": {
+      "source": 1,
+      "agent": "Gasolina corriente",
+      "gas": "CO2_BIO",
+      "factor_value": 0.7618,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.234
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 13,
+    "fields": {
+      "source": 1,
+      "agent": "Gas natural",
+      "gas": "CO2",
+      "factor_value": 1.98,
+      "unit": "m3",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 6.589
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 14,
+    "fields": {
+      "source": 1,
+      "agent": "Gas natural",
+      "gas": "CH4",
+      "factor_value": 3.6e-05,
+      "unit": "m3",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 3
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 15,
+    "fields": {
+      "source": 1,
+      "agent": "Gas natural",
+      "gas": "N2O",
+      "factor_value": 3.57e-06,
+      "unit": "m3",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.3
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 16,
+    "fields": {
+      "source": 1,
+      "agent": "Gas licuado de petróleo (GLP)",
+      "gas": "CO2",
+      "factor_value": 3.051,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.208
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 17,
+    "fields": {
+      "source": 1,
+      "agent": "Gas licuado de petróleo (GLP)",
+      "gas": "CH4",
+      "factor_value": 4.5e-05,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 3
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 18,
+    "fields": {
+      "source": 1,
+      "agent": "Gas licuado de petróleo (GLP)",
+      "gas": "N2O",
+      "factor_value": 5e-06,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.3
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 19,
+    "fields": {
+      "source": 1,
+      "agent": "Kerosene / Jet Fuel",
+      "gas": "CO2",
+      "factor_value": 9.623,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.204
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 20,
+    "fields": {
+      "source": 1,
+      "agent": "Kerosene / Jet Fuel",
+      "gas": "CH4",
+      "factor_value": 2.7e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 10
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 21,
+    "fields": {
+      "source": 1,
+      "agent": "Kerosene / Jet Fuel",
+      "gas": "N2O",
+      "factor_value": 5e-06,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 2
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 22,
+    "fields": {
+      "source": 1,
+      "agent": "Etanol anhidro",
+      "gas": "CO2_BIO",
+      "factor_value": 5.92,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.348
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 23,
+    "fields": {
+      "source": 1,
+      "agent": "Etanol anhidro",
+      "gas": "CH4",
+      "factor_value": 1.5e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 10
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 24,
+    "fields": {
+      "source": 1,
+      "agent": "Etanol anhidro",
+      "gas": "N2O",
+      "factor_value": 3e-06,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 2
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 25,
+    "fields": {
+      "source": 1,
+      "agent": "Carbón mineral",
+      "gas": "CO2",
+      "factor_value": 2.5348,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.264
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 26,
+    "fields": {
+      "source": 1,
+      "agent": "Carbón mineral",
+      "gas": "CH4",
+      "factor_value": 2.876e-05,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 3
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 27,
+    "fields": {
+      "source": 1,
+      "agent": "Carbón mineral",
+      "gas": "N2O",
+      "factor_value": 4.314e-05,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 28,
+    "fields": {
+      "source": 2,
+      "agent": "Diésel / ACPM",
+      "gas": "CO2",
+      "factor_value": 9.162,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 29,
+    "fields": {
+      "source": 2,
+      "agent": "Diésel / ACPM",
+      "gas": "CH4",
+      "factor_value": 3.67e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 9.5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 30,
+    "fields": {
+      "source": 2,
+      "agent": "Diésel / ACPM",
+      "gas": "N2O",
+      "factor_value": 3.67e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 12
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 31,
+    "fields": {
+      "source": 2,
+      "agent": "Diésel / ACPM",
+      "gas": "CO2_BIO",
+      "factor_value": 0.6882,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 32,
+    "fields": {
+      "source": 2,
+      "agent": "Biodiésel B10",
+      "gas": "CO2",
+      "factor_value": 9.162,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 33,
+    "fields": {
+      "source": 2,
+      "agent": "Biodiésel B10",
+      "gas": "CH4",
+      "factor_value": 3.67e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 9.5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 34,
+    "fields": {
+      "source": 2,
+      "agent": "Biodiésel B10",
+      "gas": "N2O",
+      "factor_value": 3.67e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 12
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 35,
+    "fields": {
+      "source": 2,
+      "agent": "Biodiésel B10",
+      "gas": "CO2_BIO",
+      "factor_value": 0.6882,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 36,
+    "fields": {
+      "source": 2,
+      "agent": "Gasolina corriente",
+      "gas": "CO2",
+      "factor_value": 6.8562,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.234
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 37,
+    "fields": {
+      "source": 2,
+      "agent": "Gasolina corriente",
+      "gas": "CH4",
+      "factor_value": 0.000263,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 110
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 38,
+    "fields": {
+      "source": 2,
+      "agent": "Gasolina corriente",
+      "gas": "N2O",
+      "factor_value": 2.5e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 11
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 39,
+    "fields": {
+      "source": 2,
+      "agent": "Gasolina corriente",
+      "gas": "CO2_BIO",
+      "factor_value": 0.7618,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE); mezcla 90 % fósil / 10 % biocombustible",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.234
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 40,
+    "fields": {
+      "source": 2,
+      "agent": "Gas natural vehicular",
+      "gas": "CO2",
+      "factor_value": 1.98,
+      "unit": "m3",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 6.589
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 41,
+    "fields": {
+      "source": 2,
+      "agent": "Gas natural vehicular",
+      "gas": "CH4",
+      "factor_value": 0.00328,
+      "unit": "m3",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 1540
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 42,
+    "fields": {
+      "source": 2,
+      "agent": "Gas natural vehicular",
+      "gas": "N2O",
+      "factor_value": 0.000107,
+      "unit": "m3",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 77
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 43,
+    "fields": {
+      "source": 2,
+      "agent": "Gas licuado de petróleo (GLP)",
+      "gas": "CO2",
+      "factor_value": 3.051,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.208
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 44,
+    "fields": {
+      "source": 2,
+      "agent": "Gas licuado de petróleo (GLP)",
+      "gas": "CH4",
+      "factor_value": 0.004178,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 1540
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 45,
+    "fields": {
+      "source": 2,
+      "agent": "Gas licuado de petróleo (GLP)",
+      "gas": "N2O",
+      "factor_value": 0.000136,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 77
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 46,
+    "fields": {
+      "source": 2,
+      "agent": "Etanol anhidro",
+      "gas": "CO2_BIO",
+      "factor_value": 5.92,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.348
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 47,
+    "fields": {
+      "source": 2,
+      "agent": "Etanol anhidro",
+      "gas": "CH4",
+      "factor_value": 8.8e-05,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 84
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 48,
+    "fields": {
+      "source": 2,
+      "agent": "Etanol anhidro",
+      "gas": "N2O",
+      "factor_value": 0.0002,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006 (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 123
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 49,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de cemento (Clinker)",
+      "gas": "CO2",
+      "factor_value": 520,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 35
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 50,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de Cal Viva",
+      "gas": "CO2",
+      "factor_value": 750,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 51,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de Cal Dolomítica",
+      "gas": "CO2",
+      "factor_value": 860,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 52,
+    "fields": {
+      "source": 3,
+      "agent": "Calcinación de Calcita (CaCO3)",
+      "gas": "CO2",
+      "factor_value": 439.71,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 53,
+    "fields": {
+      "source": 3,
+      "agent": "Calcinación de Magnesita (MgCO3)",
+      "gas": "CO2",
+      "factor_value": 521.97,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 54,
+    "fields": {
+      "source": 3,
+      "agent": "Calcinación de Dolomita (CaMg(CO3)2)",
+      "gas": "CO2",
+      "factor_value": 477.32,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 55,
+    "fields": {
+      "source": 3,
+      "agent": "Calcinación de Siderita (FeCO3)",
+      "gas": "CO2",
+      "factor_value": 379.87,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 56,
+    "fields": {
+      "source": 3,
+      "agent": "Calcinación de Rhodochrosita (MnCO3)",
+      "gas": "CO2",
+      "factor_value": 382.86,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 57,
+    "fields": {
+      "source": 3,
+      "agent": "Calcinación de Carbonato de sodio (Na2CO3)",
+      "gas": "CO2",
+      "factor_value": 414.92,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 15
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 58,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de fibra de vidrio",
+      "gas": "CO2",
+      "factor_value": 0.25,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 60
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 59,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de vidrio especial (vajillas)",
+      "gas": "CO2",
+      "factor_value": 0.1,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 60
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 60,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de vidrio especial (iluminación)",
+      "gas": "CO2",
+      "factor_value": 0.2,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 60
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 61,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de vidrio especial (laboratorio)",
+      "gas": "CO2",
+      "factor_value": 0.03,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 60
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 62,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de Amoniaco",
+      "gas": "CO2",
+      "factor_value": 3273,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 63,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de Acido Nítrico",
+      "gas": "CO2",
+      "factor_value": 9,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 40
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 64,
+    "fields": {
+      "source": 3,
+      "agent": "Producción de coque",
+      "gas": "CH4",
+      "factor_value": 0.0001,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 25
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 65,
+    "fields": {
+      "source": 3,
+      "agent": "Extracción de Carbón - Subterráneo",
+      "gas": "CH4",
+      "factor_value": 19.43,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 300
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 66,
+    "fields": {
+      "source": 3,
+      "agent": "Extracción de Carbón - Cielo Abierto",
+      "gas": "CH4",
+      "factor_value": 1.474,
+      "unit": "t",
+      "gwp_100yr": null,
+      "source_ref": "IPCC 2006 / US EPA (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 300
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 67,
+    "fields": {
+      "source": 5,
+      "agent": "Aceites lubricantes",
+      "gas": "CO2",
+      "factor_value": 0.0017829504,
+      "unit": "gal",
+      "gwp_100yr": null,
+      "source_ref": "Herramienta ECCI, hoja FE",
+      "year_applic": 2022,
+      "uncertainty_pct": 50
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 68,
+    "fields": {
+      "source": 5,
+      "agent": "Grasa lubricante",
+      "gas": "CO2",
+      "factor_value": 0.0005896,
+      "unit": "kg",
+      "gwp_100yr": null,
+      "source_ref": "Herramienta ECCI, hoja FE",
+      "year_applic": 2022,
+      "uncertainty_pct": 50
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 69,
+    "fields": {
+      "source": 6,
+      "agent": "Electricidad SIN 2022 (UPME)",
+      "gas": "CO2",
+      "factor_value": 0.112,
+      "unit": "kWh",
+      "gwp_100yr": null,
+      "source_ref": "UPME 2023, factor SIN 2022",
+      "year_applic": 2022,
+      "uncertainty_pct": 10
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 70,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Aguachica (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 82.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 71,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Aguachica (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 41.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 72,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Apartadó (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 174,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 73,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Apartadó (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 87.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 74,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Arauca (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 162.5,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 75,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Arauca (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 81.25,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 76,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Armenia (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 65.6,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 77,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Armenia (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 32.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 78,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Barrancabermeja (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 77.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 79,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Barrancabermeja (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 38.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 80,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Barranquilla (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 153,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 81,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Barranquilla (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 76.5,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 82,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Bucaramanga (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 89.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 83,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Bucaramanga (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 44.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 84,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Buenaventura (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 73.6,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 85,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Buenaventura (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 36.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 86,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Cali (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 86.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 87,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Cali (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 43.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 88,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Cartagena (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 145.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 89,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Cartagena (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 72.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 90,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Cúcuta (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 104.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 91,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Cúcuta (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 52.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 92,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Florencia (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 83.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 93,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Florencia (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 41.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 94,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ibagué (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 48.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 95,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ibagué (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 24.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 96,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ipiales (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 125.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 97,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ipiales (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 62.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 98,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Leticia (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 206.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 99,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Leticia (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 103.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 100,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Manizales (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 34.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 101,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Manizales (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 17.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 102,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Medellín-Enrique Olaya Herrera (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 77.3,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 103,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Medellín-Enrique Olaya Herrera (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 38.65,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 104,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Medellín-José María Córdova (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 71.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 105,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Medellín-José María Córdova (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 35.6,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 106,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Mitú (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 243.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 107,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Mitú (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 121.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 108,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Montería (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 118.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 109,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Montería (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 59.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 110,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Neiva (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 66.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 111,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Neiva (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 33.45,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 112,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Pasto (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 120.5,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 113,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Pasto (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 60.25,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 114,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Pereira (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 62.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 115,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Pereira (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 31.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 116,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Pitalito (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 80.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 117,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Pitalito (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 40.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 118,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Popayán (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 93,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 119,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Popayán (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 46.5,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 120,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Puerto Asís (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 94.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 121,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Puerto Asís (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 47.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 122,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Puerto Carreño (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 282,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 123,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Puerto Carreño (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 141.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 124,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Puerto Inírida (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 269.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 125,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Puerto Inírida (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 134.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 126,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Quibdó (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 63.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 127,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Quibdó (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 31.55,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 128,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Riohacha (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 163.6,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 129,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Riohacha (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 81.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 130,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - San Andrés (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 221.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 131,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - San Andrés (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 110.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 132,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - San José del Guaviare (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 63.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 133,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - San José del Guaviare (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 31.85,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 134,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Santa Marta (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 156,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 135,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Santa Marta (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 78.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 136,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Saravena (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 76.6,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 137,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Saravena (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 38.3,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 138,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Tame (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 73.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 139,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Tame (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 36.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 140,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Tumaco (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 112.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 141,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Tumaco (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 56.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 142,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Valledupar (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 144.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 143,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Valledupar (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 72.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 144,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Villagarzón (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 94,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 145,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Villagarzón (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 47.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 146,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Villavicencio (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 37.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 147,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Villavicencio (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 18.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 148,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Yopal (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 55.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 149,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Yopal (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 27.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 150,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Rio de Janeiro (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 535.4,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 151,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Rio de Janeiro (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 267.7,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 152,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - San Francisco (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 712.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 153,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - San Francisco (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 356.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 154,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Guadalajara (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 535,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 155,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Guadalajara (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 267.5,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 156,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Quito (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 157.8,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 157,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Quito (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 78.9,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 158,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Frankfurt (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 1216,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 159,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Frankfurt (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 608.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 160,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ciudad de México (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 404,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 161,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ciudad de México (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 202.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 162,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ciudad de Panamá (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 163.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 163,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Ciudad de Panamá (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 81.6,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 164,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Madrid (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 750,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 165,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Madrid (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 375.0,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 166,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - La Habana (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 346.2,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 167,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - La Habana (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 173.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 168,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Santiago de Chile (Ida y regreso)",
+      "gas": "CO2",
+      "factor_value": 498.1,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 169,
+    "fields": {
+      "source": 7,
+      "agent": "Vuelo Bogotá - Santiago de Chile (Un trayecto)",
+      "gas": "CO2",
+      "factor_value": 249.05,
+      "unit": "viaje",
+      "gwp_100yr": 1,
+      "source_ref": "ICAO 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 170,
+    "fields": {
+      "source": 7,
+      "agent": "Motocicleta (pasajero-km)",
+      "gas": "CO2",
+      "factor_value": 0.195,
+      "unit": "pkm",
+      "gwp_100yr": 1,
+      "source_ref": "SDM 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 171,
+    "fields": {
+      "source": 7,
+      "agent": "Carro/taxi (pasajero-km)",
+      "gas": "CO2",
+      "factor_value": 0.19,
+      "unit": "pkm",
+      "gwp_100yr": 1,
+      "source_ref": "SDM 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 172,
+    "fields": {
+      "source": 7,
+      "agent": "Bus/SITP/Intermunicipal (pasajero-km)",
+      "gas": "CO2",
+      "factor_value": 0.045,
+      "unit": "pkm",
+      "gwp_100yr": 1,
+      "source_ref": "SDM 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 173,
+    "fields": {
+      "source": 7,
+      "agent": "Transmilenio (pasajero-km)",
+      "gas": "CO2",
+      "factor_value": 0.012,
+      "unit": "pkm",
+      "gwp_100yr": 1,
+      "source_ref": "SDM 2023",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 174,
+    "fields": {
+      "source": 7,
+      "agent": "Salida de campo - vehículo diésel (12 km/gal)",
+      "gas": "CO2",
+      "factor_value": 0.7635,
+      "unit": "km",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006; rendimiento 12 km/gal (MDL Transmilenio 2011); mezcla 90/10",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 175,
+    "fields": {
+      "source": 7,
+      "agent": "Salida de campo - vehículo diésel (12 km/gal)",
+      "gas": "CH4",
+      "factor_value": 3.058333e-06,
+      "unit": "km",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006; rendimiento 12 km/gal (MDL Transmilenio 2011); mezcla 90/10",
+      "year_applic": 2022,
+      "uncertainty_pct": 9.5
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 176,
+    "fields": {
+      "source": 7,
+      "agent": "Salida de campo - vehículo diésel (12 km/gal)",
+      "gas": "N2O",
+      "factor_value": 3.058333e-06,
+      "unit": "km",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006; rendimiento 12 km/gal (MDL Transmilenio 2011); mezcla 90/10",
+      "year_applic": 2022,
+      "uncertainty_pct": 12
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 177,
+    "fields": {
+      "source": 7,
+      "agent": "Salida de campo - vehículo diésel (12 km/gal)",
+      "gas": "CO2_BIO",
+      "factor_value": 0.05735,
+      "unit": "km",
+      "gwp_100yr": null,
+      "source_ref": "FECOC 2016 / IPCC 2006; rendimiento 12 km/gal (MDL Transmilenio 2011); mezcla 90/10",
+      "year_applic": 2022,
+      "uncertainty_pct": 0.205
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 178,
+    "fields": {
+      "source": 7,
+      "agent": "Hospedaje hotel",
+      "gas": "CO2",
+      "factor_value": 7.895,
+      "unit": "nights",
+      "gwp_100yr": 1,
+      "source_ref": "Ivanova, A. 2012",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 179,
+    "fields": {
+      "source": 7,
+      "agent": "Hospedaje alojamiento y desayuno",
+      "gas": "CO2",
+      "factor_value": 4.142,
+      "unit": "nights",
+      "gwp_100yr": 1,
+      "source_ref": "Ivanova, A. 2012",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 180,
+    "fields": {
+      "source": 8,
+      "agent": "Papel bond blanco",
+      "gas": "CO2",
+      "factor_value": 1.05,
+      "unit": "kg",
+      "gwp_100yr": 1,
+      "source_ref": "Silva et al. (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": 50
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 181,
+    "fields": {
+      "source": 8,
+      "agent": "Papel reciclado",
+      "gas": "CO2",
+      "factor_value": 0.81,
+      "unit": "kg",
+      "gwp_100yr": 1,
+      "source_ref": "Fazio y Pennington 2006 (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": 50
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 182,
     "fields": {
       "source": 9,
       "agent": "Relleno sanitario",
@@ -293,27 +3064,29 @@
       "factor_value": 0.048,
       "unit": "kg",
       "gwp_100yr": 27,
-      "source_ref": "IPCC 2006/GTC-ISO-TR-14069:2017",
-      "year_applic": 2022
+      "source_ref": "CAEM et al. (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 30
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
-    "pk": 7,
+    "pk": 183,
     "fields": {
       "source": 9,
       "agent": "Reciclaje",
-      "gas": "CH4",
-      "factor_value": 0.048,
+      "gas": "CO2",
+      "factor_value": 0.0,
       "unit": "kg",
-      "gwp_100yr": 27,
-      "source_ref": "GTC-ISO-TR-14069:2017",
-      "year_applic": 2022
+      "gwp_100yr": 1,
+      "source_ref": "Sin emisión: el aprovechamiento se calcula como remoción (RE1)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
-    "pk": 8,
+    "pk": 184,
     "fields": {
       "source": 9,
       "agent": "Compostaje",
@@ -321,55 +3094,344 @@
       "factor_value": 0.07,
       "unit": "kg",
       "gwp_100yr": 27,
-      "source_ref": "IPCC 2006",
-      "year_applic": 2022
+      "source_ref": "Valor heredado; la herramienta ECCI no trae factor de compostaje",
+      "year_applic": 2022,
+      "uncertainty_pct": null
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
-    "pk": 9,
+    "pk": 185,
     "fields": {
-      "source": 8,
-      "agent": "Papel Bond",
+      "source": 9,
+      "agent": "Disposición especial (residuos peligrosos)",
       "gas": "CO2",
-      "factor_value": 1.05,
+      "factor_value": 0.5,
       "unit": "kg",
       "gwp_100yr": 1,
-      "source_ref": "Informe ECCI 2022",
-      "year_applic": 2022
+      "source_ref": "CAEM et al. (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 5
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
-    "pk": 10,
+    "pk": 186,
     "fields": {
-      "source": 3,
-      "agent": "Gas natural UPME",
+      "source": 9,
+      "agent": "Incineración residuos ordinarios",
       "gas": "CO2",
-      "factor_value": 1.98,
-      "unit": "m3",
+      "factor_value": 0.23,
+      "unit": "kg",
       "gwp_100yr": 1,
-      "source_ref": "UPME FECOC 2016",
-      "year_applic": 2022
+      "source_ref": "CAEM et al. (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 100
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
-    "pk": 11,
+    "pk": 187,
     "fields": {
-      "source": 6,
-      "agent": "Electricidad XM",
+      "source": 9,
+      "agent": "Incineración residuos hospitalarios",
       "gas": "CO2",
-      "factor_value": 0.112,
-      "unit": "kWh",
+      "factor_value": 0.57,
+      "unit": "kg",
       "gwp_100yr": 1,
-      "source_ref": "XM 2023",
-      "year_applic": 2022
+      "source_ref": "CAEM et al. (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 100
     }
   },
   {
     "model": "carbon_footprint.emissionfactor",
-    "pk": 12,
+    "pk": 188,
+    "fields": {
+      "source": 9,
+      "agent": "Incineración residuos industriales",
+      "gas": "CO2",
+      "factor_value": 1.38,
+      "unit": "kg",
+      "gwp_100yr": 1,
+      "source_ref": "CAEM et al. (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": 100
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 189,
+    "fields": {
+      "source": 10,
+      "agent": "Aprovechamiento de residuos (reciclaje)",
+      "gas": "CH4",
+      "factor_value": 0.048,
+      "unit": "kg",
+      "gwp_100yr": 27,
+      "source_ref": "CAEM et al. (Herramienta ECCI, hoja FE)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 190,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Cupressus lusitanica",
+      "gas": "CO2",
+      "factor_value": 10.666666666667,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 11.7333 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 191,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Fraxinus chinensis",
+      "gas": "CO2",
+      "factor_value": 22.727272727273,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 25 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 192,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Pinus radiata",
+      "gas": "CO2",
+      "factor_value": 11.745454545455,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 12.92 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 193,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Pinus oocarpa",
+      "gas": "CO2",
+      "factor_value": 18.3,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 20.13 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 194,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Pinus caribaea",
+      "gas": "CO2",
+      "factor_value": 14.036363636364,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 15.44 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 195,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Eucalyptus globulus",
+      "gas": "CO2",
+      "factor_value": 25.336363636364,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 27.87 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 196,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Eucalyptus grandis",
+      "gas": "CO2",
+      "factor_value": 19.754545454545,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 21.73 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 197,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Eucalyptus tereticornis",
+      "gas": "CO2",
+      "factor_value": 32.025,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 12.81 t CO2/ha/año, 400 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 198,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Cedrela odorata",
+      "gas": "CO2",
+      "factor_value": 12.1,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 13.31 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 199,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Pinus patula",
+      "gas": "CO2",
+      "factor_value": 14.3,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 5.72 t CO2/ha/año, 400 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 200,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Alnus acuminata",
+      "gas": "CO2",
+      "factor_value": 7.118181818182,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 7.83 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 201,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Acacia mangium",
+      "gas": "CO2",
+      "factor_value": 19.312727272727,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 53.11 t CO2/ha/año, 2750 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 202,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Pachira quinata",
+      "gas": "CO2",
+      "factor_value": 11.827272727273,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 13.01 t CO2/ha/año, 1100 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 203,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Gmelina arborea",
+      "gas": "CO2",
+      "factor_value": 17.93125,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 28.69 t CO2/ha/año, 1600 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 204,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Theobroma cacao",
+      "gas": "CO2",
+      "factor_value": 5.88,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 5.88 t CO2/ha/año, 1000 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 205,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Tectona grandis",
+      "gas": "CO2",
+      "factor_value": 18.3,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 7.32 t CO2/ha/año, 400 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 206,
+    "fields": {
+      "source": 10,
+      "agent": "Forestal Leucaena leucocephala",
+      "gas": "CO2",
+      "factor_value": 27.197719771977,
+      "unit": "arbol",
+      "gwp_100yr": 1,
+      "source_ref": "Captura 90.65 t CO2/ha/año, 3333 árboles/ha (Herramienta ECCI)",
+      "year_applic": 2022,
+      "uncertainty_pct": null
+    }
+  },
+  {
+    "model": "carbon_footprint.emissionfactor",
+    "pk": 207,
     "fields": {
       "source": 11,
       "agent": "Agua potable Bogotá",
@@ -377,8 +3439,9 @@
       "factor_value": 0.345,
       "unit": "m3",
       "gwp_100yr": 1,
-      "source_ref": "GTC-ISO-TR-14069:2017",
-      "year_applic": 2022
+      "source_ref": "Documento de ecuaciones (GTC-ISO-TR-14069:2017); no está en la herramienta ECCI",
+      "year_applic": 2022,
+      "uncertainty_pct": null
     }
   }
-]
+]

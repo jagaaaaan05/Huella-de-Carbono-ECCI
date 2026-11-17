@@ -27,6 +27,7 @@ const FACTOR_SOURCE_BY_RECORD_KEY = {
   fieldPractice: 'EI2',
   groundTransport: 'EI2',
   lodging: 'EI2',
+  removals: 'RE1',
 };
 
 const filterOptionsByRecordKey = (items, sourceKey, recordKey, fieldName) => {

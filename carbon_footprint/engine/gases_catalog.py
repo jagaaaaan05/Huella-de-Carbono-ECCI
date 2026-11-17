@@ -2,24 +2,40 @@
 
 DEFAULT_METHOD_PROFILE = "ISO14064_ECCI_2022"
 
+# Biogenic anthropogenic CO2 is reported apart from the inventory total (ISO 14064-1:2020).
+BIOGENIC_GASES = {"CO2_BIO"}
+
 
 METHOD_PROFILES: dict[str, dict] = {
     "ISO14064_ECCI_2022": {
+        # IPCC AR6 (2021), as used by the ECCI calculation tool (sheet FE).
         "default_gwp": {
-            # Source: IPCC AR6 2021, Table 7.SM.7 (100-yr GWP including climate-carbon feedback)
             "CO2": 1.0,
-            "CH4": 27.0,      # CH4 no fósil (biogénico/residuos) — AR6
+            "CO2_BIO": 1.0,
+            "CH4": 27.0,  # CH4 non-fossil
             "N2O": 273.0,
-            "HCFC-123": 90.4, # Informe ECCI 2022 / IPCC AR6 2021
+            "HCFC-123": 90.4,
+            "HCFC-22": 1960.0,
+            "HFC-134A": 1530.0,
+            "HFC-404A": 3942.8,
+            "HFC-407C": 1624.21,
+            "HFC-410A": 2255.5,
+            "HFC-227EA": 3600.0,
+            "SF6": 24300.0,
         },
         "source_gwp_overrides": {
-            # CH4 fósil (combustión) = 29.8 per IPCC AR6, used in fuel sources
+            # CH4 fossil for combustion and industrial processes.
             "ED1": {"CH4": 29.8},
             "ED2": {"CH4": 29.8},
             "ED3": {"CH4": 29.8},
+            "EI2": {"CH4": 29.8},
         },
     },
 }
+
+
+def is_biogenic(gas: str | None) -> bool:
+    return (gas or "").upper() in BIOGENIC_GASES
 
 
 def resolve_gwp(

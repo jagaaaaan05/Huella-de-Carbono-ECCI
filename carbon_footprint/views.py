@@ -16,7 +16,8 @@ from .models import (
     ElectricityConsumption, NaturalGasConsumption, FuelConsumption,
     VehicleFleetConsumption, ExtinguisherRefill, WasteRecord,
     PaperConsumption, WaterConsumption, Flight, GroundTransportRecord, LodgingRecord,
-    FieldPracticeTrip, RemovalRecord, CalculationRun, CalculationSourceTrace
+    FieldPracticeTrip, RemovalRecord, CalculationRun, CalculationSourceTrace,
+    IndustrialProcessEmission, LubricantConsumption
 )
 from .serializers import (
     CampusSerializer, PeriodSerializer, EmissionCategorySerializer,
@@ -28,7 +29,7 @@ from .serializers import (
     WaterConsumptionSerializer, FlightSerializer,
     GroundTransportRecordSerializer, LodgingRecordSerializer,
     FieldPracticeTripSerializer, RemovalRecordSerializer,
-    CalculationRunSerializer
+    CalculationRunSerializer, IndustrialProcessEmissionSerializer, LubricantConsumptionSerializer
 )
 from .engine.calculation_service import calculate_inventory_run
 from .engine.gases_catalog import DEFAULT_METHOD_PROFILE
@@ -229,6 +230,16 @@ class LodgingRecordViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
     serializer_class = LodgingRecordSerializer
 
 
+class IndustrialProcessEmissionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
+    queryset = IndustrialProcessEmission.objects.select_related('campus', 'period').all()
+    serializer_class = IndustrialProcessEmissionSerializer
+
+
+class LubricantConsumptionViewSet(PeriodCampusFilterMixin, BasePermissionViewSet):
+    queryset = LubricantConsumption.objects.select_related('campus', 'period').all()
+    serializer_class = LubricantConsumptionSerializer
+
+
 class CalculationRunView(APIView):
     """Backend-first, auditable inventory calculation endpoint."""
 
@@ -313,7 +324,9 @@ class CalculationRunView(APIView):
                 gross_tco2e=result['totals']['gross_tco2e'],
                 removals_tco2e=result['totals']['removals_tco2e'],
                 net_tco2e=result['totals']['net_tco2e'],
+                biogenic_tco2e=result['totals']['biogenic_tco2e'],
                 uncertainty_pct=result['totals']['uncertainty_pct'],
+                gas_breakdown=result['totals']['gas_breakdown'],
                 warnings=result.get('warnings') or [],
             )
             for source in result.get('sources', []):
@@ -322,7 +335,9 @@ class CalculationRunView(APIView):
                     source_code=source.get('source_code') or '',
                     source_name=source.get('source_name') or '',
                     total_tco2e=source.get('total_tco2e') or 0,
+                    biogenic_tco2e=source.get('biogenic_tco2e') or 0,
                     uncertainty_pct=source.get('uncertainty_pct') or 0,
+                    gas_breakdown=source.get('gas_breakdown') or {},
                     warnings=source.get('warnings') or [],
                     traces=source.get('traces') or [],
                 )
