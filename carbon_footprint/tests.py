@@ -39,7 +39,11 @@ from carbon_footprint.models import (
 	RemovalRecord,
 	CalculationRun,
 	CalculationSourceTrace,
+	Flight,
+	FieldPracticeTrip,
+	LodgingRecord,
 )
+from carbon_footprint.engine.calculation_service import calculate_inventory_run
 
 
 def convertir_g_a_kg(valor_g):
@@ -385,6 +389,104 @@ class CalculationRunApiTestCase(TestCase):
 		self.assertTrue(all(item['campus'] and item['campus']['id'] == self.campus.id for item in results))
 
 
+class Inventory2022ValidationTestCase(TestCase):
+	"""Loads the official factor catalog and the 2022 activity data from the ECCI Excel tool.
+
+	Expected values come from the tool's sheets and table 3 of the Informe ECCI 2023.
+	"""
+
+	fixtures = ['initial_data']
+
+	def setUp(self):
+		self.period = Period.objects.create(year=2022)
+		campus = Campus.objects.get(pk=1)
+		base = {'period': self.period, 'campus': campus}
+
+		NaturalGasConsumption.objects.create(**base, fuel_type_id='GASNATURAL', m3=5975)
+		VehicleFleetConsumption.objects.create(**base, description='Vehiculos', fuel_type_id='GASOLINA', unit='gal', amount=2951.57)
+		VehicleFleetConsumption.objects.create(**base, description='Vehiculos', fuel_type_id='ACPM', unit='gal', amount=684.54)
+		ExtinguisherRefill.objects.create(**base, description='Extintores CO2', ext_type_id='CO2', unit='kg', amount=473.66)
+		ExtinguisherRefill.objects.create(**base, description='Extintores R-123', ext_type_id='HCFC-123', unit='kg', amount=225.7)
+		ElectricityConsumption.objects.create(**base, kwh=1503331.485)
+
+		flights = [
+			('Rio de Janeiro', True, 2), ('Cali', False, 23), ('Cali', True, 31),
+			('Medellín-Enrique Olaya Herrera', False, 11), ('Medellín-Enrique Olaya Herrera', True, 16),
+			('Cartagena', True, 9), ('Santa Marta', True, 1), ('Santiago de Chile', True, 2),
+			('Ciudad de México', True, 1), ('Ciudad de Panamá', True, 1), ('Frankfurt', True, 1),
+			('Guadalajara', True, 3), ('La Habana', True, 1), ('Madrid', True, 2), ('Quito', True, 2),
+			('San Francisco', True, 1),
+		]
+		for destination, round_trip, passengers in flights:
+			Flight.objects.create(
+				period=self.period, origin='Bogotá', destination=destination,
+				round_trip=round_trip, passengers=passengers,
+			)
+		FieldPracticeTrip.objects.create(
+			**base, description='Salidas de campo', origin='Bogotá', destination='Varios',
+			km_oneway=16353.1, total_km=32706.2,
+		)
+
+		sheet = PaperWeightCatalog.objects.create(size='kg', kg_per_ream=1)
+		PaperConsumption.objects.create(**base, size=sheet, reams=2011)
+		WasteRecord.objects.create(**base, waste_type_id='RESIDUO_RSU', unit='kg', amount=30230.3)
+		WasteRecord.objects.create(**base, waste_type_id='RESIDUO_PEL', unit='kg', amount=1790.86)
+		RemovalRecord.objects.create(**base, rtype='forestal', description='Cupressus lusitanica', activity_value=74, activity_unit='arbol')
+		RemovalRecord.objects.create(**base, rtype='reciclaje', activity_value=3746.5, activity_unit='kg')
+
+		self.result = calculate_inventory_run(period_id=self.period.id)
+		self.sources = {source['source_code']: source for source in self.result['sources']}
+
+	def test_sources_match_excel_tool(self):
+		expected = {
+			'ED1': 11.84273327,
+			'ED2': 26.55919394,
+			'ED4': 20.87694,
+			'EI1': 168.37312632,
+			'EI2': 15.14835 + 25.00147171,
+			'EI3': 2.11155,
+			'EI4': 39.1784688 + 0.89543,
+			'RE1': -(0.78933333 + 4.855464),
+		}
+		for code, value in expected.items():
+			self.assertAlmostEqual(self.sources[code]['total_tco2e'], value, places=4, msg=code)
+		self.assertEqual(self.result['warnings'], [])
+
+	def test_totals_match_inventory_report(self):
+		totals = self.result['totals']
+		self.assertAlmostEqual(totals['gross_tco2e'], 309.987, places=2)
+		self.assertAlmostEqual(totals['net_tco2e'], 304.342, places=2)
+		# Biogenic CO2 from the 10 % biofuel blend, reported apart (table 3: 4.596).
+		self.assertAlmostEqual(totals['biogenic_tco2e'], 4.5953, places=3)
+
+	def test_gas_breakdown_sums_to_gross(self):
+		totals = self.result['totals']
+		fossil = sum(value for gas, value in totals['gas_breakdown'].items() if gas != 'CO2_BIO')
+		self.assertAlmostEqual(fossil, totals['gross_tco2e'], places=6)
+		self.assertIn('CH4', totals['gas_breakdown'])
+		self.assertIn('N2O', totals['gas_breakdown'])
+
+	def test_flights_excluded_from_campus_runs(self):
+		campus_result = calculate_inventory_run(period_id=self.period.id, campus_id=1)
+		transport = next(s for s in campus_result['sources'] if s['source_code'] == 'EI2')
+		self.assertAlmostEqual(transport['total_tco2e'], 25.00147171, places=4)
+
+	def test_lodging_uses_hotel_factor(self):
+		LodgingRecord.objects.create(
+			period=self.period, campus_id=1, description='Hotel en Medellín', nights=10,
+		)
+		result = calculate_inventory_run(period_id=self.period.id)
+		transport = next(s for s in result['sources'] if s['source_code'] == 'EI2')
+		self.assertAlmostEqual(transport['total_tco2e'], 15.14835 + 25.00147171 + 0.07895, places=4)
+
+	def test_water_is_recorded_but_not_added_to_total(self):
+		from carbon_footprint.models import WaterConsumption
+		WaterConsumption.objects.create(period=self.period, campus_id=1, m3=10000)
+		result = calculate_inventory_run(period_id=self.period.id)
+		self.assertNotIn('EI5', {source['source_code'] for source in result['sources']})
+		self.assertAlmostEqual(result['totals']['gross_tco2e'], self.result['totals']['gross_tco2e'], places=6)
+
+
 class BugRegressionTestCase(TestCase):
 	"""Tests that verify all critical QA bugs are resolved."""
 
@@ -440,3 +542,33 @@ class BugRegressionTestCase(TestCase):
 		"""B1: SOURCE_INDUSTRIAL constant must be defined in emission_sources."""
 		from carbon_footprint.engine.emission_sources import SOURCE_INDUSTRIAL
 		self.assertEqual(SOURCE_INDUSTRIAL, 'ED3')
+
+
+class CargarDatosPruebaCommandTestCase(TestCase):
+	"""The test-data command loads every record type and reproduces the official 2022 result."""
+
+	def test_command_loads_all_periods_and_runs(self):
+		from io import StringIO
+		from django.core.management import call_command
+		from carbon_footprint.models import CalculationRun, IndustrialProcessEmission, LubricantConsumption
+
+		call_command('cargar_datos_prueba', stdout=StringIO())
+		self.assertEqual(CalculationRun.objects.count(), 8)
+		run_2022 = CalculationRun.objects.get(period__year=2022, campus__isnull=True)
+		self.assertAlmostEqual(run_2022.net_tco2e, 304.342, places=2)
+		run_2023 = CalculationRun.objects.get(period__year=2023, period__month__isnull=True, campus__isnull=True)
+		self.assertAlmostEqual(run_2023.net_tco2e, 404.508, places=2)
+		self.assertTrue(IndustrialProcessEmission.objects.exists())
+		self.assertTrue(LubricantConsumption.objects.exists())
+
+	def test_command_refuses_to_overwrite_without_reset(self):
+		from io import StringIO
+		from django.core.management import call_command
+		from django.core.management.base import CommandError
+		from carbon_footprint.models import CalculationRun
+
+		call_command('cargar_datos_prueba', '--sin-corridas', stdout=StringIO())
+		with self.assertRaises(CommandError):
+			call_command('cargar_datos_prueba', stdout=StringIO())
+		call_command('cargar_datos_prueba', '--reset', stdout=StringIO())
+		self.assertEqual(CalculationRun.objects.count(), 8)

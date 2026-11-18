@@ -1,0 +1,8 @@
+record_type;period_year;campus_id;description;kwh;fuel_type_id;unit;amount;waste_type_id;size_id;reams
+electricity;2025;1;Fila válida de control;1000;;;;;;
+electricity;2025;1;kWh negativo (debe fallar);-500;;;;;;
+waste;2025;1;Residuo con cantidad negativa (debe fallar);;;kg;-20;RESIDUO_RSU;;
+fuelStationary;2025;1;Combustible inexistente (debe fallar);;PETROLEO;gal;10;;;
+paper;2025;99;Sede inexistente (debe fallar);;;;;;A4;10
+tipo_desconocido;2025;1;Tipo de registro desconocido (debe fallar);10;;;;;;
+electricity;1990;1;Año fuera de rango (debe fallar);100;;;;;;

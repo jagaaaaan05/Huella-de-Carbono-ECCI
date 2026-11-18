@@ -29,9 +29,17 @@ UNITS = {
     "m3": UnitSpec("m3", "volume", 1000.0, "l"),
     # distance
     "km": UnitSpec("km", "distance", 1.0, "km"),
+    # passenger distance
+    "pkm": UnitSpec("pkm", "passenger_distance", 1.0, "pkm"),
+    "pasajero-km": UnitSpec("pasajero-km", "passenger_distance", 1.0, "pkm"),
     # count
-    "nights": UnitSpec("nights", "count", 1.0, "nights"),
-    "reams": UnitSpec("reams", "count", 1.0, "reams"),
+    "nights": UnitSpec("nights", "nights", 1.0, "nights"),
+    "noches": UnitSpec("noches", "nights", 1.0, "nights"),
+    "reams": UnitSpec("reams", "reams", 1.0, "reams"),
+    "viaje": UnitSpec("viaje", "trips", 1.0, "viaje"),
+    "viajes": UnitSpec("viajes", "trips", 1.0, "viaje"),
+    "arbol": UnitSpec("arbol", "trees", 1.0, "arbol"),
+    "arboles": UnitSpec("arboles", "trees", 1.0, "arbol"),
 }
 
 

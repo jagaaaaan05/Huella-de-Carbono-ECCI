@@ -107,7 +107,9 @@ export const TABLE_DATA_CONFIG = {
     mapRecord: (record) => [
       record.rtype || '',
       record.campus?.name || '',
-      formatNumber(record.tco2e),
+      record.tco2e != null
+        ? formatNumber(record.tco2e)
+        : `${formatNumber(record.activity_value)} ${record.activity_unit || ''}`.trim(),
       '',
       '',
     ],

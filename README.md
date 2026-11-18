@@ -63,25 +63,37 @@ Donde `A` = dato de actividad en la unidad correspondiente.
 |---|---|---|
 | CO2 | 1.0 | — |
 | CH4 (no fósil) | 27.0 | Residuos, biogénico |
-| CH4 (fósil) | 29.8 | Combustión ED1/ED2/ED3 |
+| CH4 (fósil) | 29.8 | Combustión ED1/ED2/ED3 y salidas de campo (EI2) |
 | N2O | 273.0 | — |
 | HCFC-123 | 90.4 | Extintores — Informe ECCI 2022 |
+| HFC-134a / R-404A / R-410A / R-407C / HCFC-22 | 1530 / 3942.8 / 2255.5 / 1624.21 / 1960 | Refrigerantes |
 
 ### Factores de emisión base (fixture inicial)
 
-| Fuente | Agente | Gas | Factor | Unidad | Referencia |
-|---|---|---|---|---|---|
-| Combustión estacionaria | Gasolina corriente | CO2 | 2.271 | kgCO2/L | IDEAM 2023 |
-| Combustión estacionaria | Diésel / ACPM | CO2 | 2.676 | kgCO2/L | IDEAM 2023 |
-| Combustión estacionaria | Gas natural | CO2 | 1.980 | kgCO2/m³ | UPME FECOC 2016 |
-| Combustión estacionaria | GLP | CO2 | 1.51 | kgCO2/kg | IDEAM 2023 |
-| Electricidad | Electricidad UPME (2023) | CO2 | 0.144 | kgCO2/kWh | UPME/IDEAM 2023 |
-| Electricidad | Electricidad XM (2022) | CO2 | 0.112 | kgCO2/kWh | XM 2023 |
-| Residuos — relleno | Relleno sanitario | CH4 | 0.048 | kgCH4/kg | IPCC 2006 / GTC-ISO-TR-14069:2017 |
-| Residuos — reciclaje | Reciclaje | CH4 | 0.048 | kgCH4/kg | GTC-ISO-TR-14069:2017 |
-| Residuos — compostaje | Compostaje | CH4 | 0.070 | kgCH4/kg | IPCC 2006 |
-| Papel | Papel Bond | CO2 | 1.05 | kgCO2/kg | Informe ECCI 2022 |
-| Agua potable | Agua potable Bogotá | CO2 | 0.345 | kgCO2/m³ | GTC-ISO-TR-14069:2017 |
+Los factores salen de la hoja FE de la herramienta de cálculo ECCI (`VF_25_07_2024_Herramienta_de_cálculo_huella_de_carbono_corporativa_ECCI.xlsm`). El fixture trae 207 filas: una por gas y agente. Los principales:
+
+| Fuente | Agente | Factor | Unidad | Referencia |
+|---|---|---|---|---|
+| ED1/ED2 | Diésel / ACPM (B10) | CO2 9.162 + CH4 + N2O; CO2 biogénico 0.688 aparte | kg/gal | FECOC 2016, mezcla 90/10 |
+| ED1/ED2 | Gasolina corriente (E10) | CO2 6.856 + CH4 + N2O; CO2 biogénico 0.762 aparte | kg/gal | FECOC 2016, mezcla 90/10 |
+| ED1 | Gas natural | CO2 1.98, CH4 3.6e-5, N2O 3.57e-6 | kg/m³ | FECOC 2016 / IPCC 2006 |
+| ED1/ED2 | GLP, kerosene, etanol, carbón | CO2, CH4, N2O | kg/unidad | FECOC 2016 / IPCC 2006 |
+| ED3 | Cal, cemento, carbonatos, amoniaco, etc. | CO2 o CH4 | kg/t | IPCC 2006 |
+| ED4 | Extintores y refrigerantes | PCG AR6 (HCFC-123 90.4, HFC-134a 1530, HFC-227ea 3600) | kg × PCG | IPCC AR6 |
+| ED5 | Aceites / grasa lubricante | 0.00178 / 0.00059 | kg CO2/gal, kg CO2/kg | Herramienta ECCI |
+| EI1 | Electricidad SIN 2022 | 0.112 | kg CO2/kWh | UPME 2023 |
+| EI2 | Vuelos desde Bogotá (50 rutas, ida y regreso o un trayecto) | 34.2 a 1216 | kg CO2e/pasajero | ICAO 2023 |
+| EI2 | Salidas de campo, vehículo diésel 12 km/gal | km / 12 × factores diésel B10 | kg/km | MDL Transmilenio 2011 |
+| EI2 | Moto, carro/taxi, bus, Transmilenio | 0.195, 0.19, 0.045, 0.012 | kg CO2e/pasajero-km | SDM 2023 |
+| EI2 | Hospedaje hotel / alojamiento y desayuno | 7.895 / 4.142 | kg CO2/noche | Ivanova 2012 |
+| EI3 | Papel bond / reciclado | 1.05 / 0.81 | kg CO2e/kg | Herramienta ECCI |
+| EI4 | Relleno sanitario | 0.048 kg CH4/kg × 27 | kg CH4/kg | CAEM |
+| EI4 | Residuos peligrosos, incineración | 0.5; 0.23 a 1.38 | kg CO2/kg | CAEM |
+| EI5 | Agua potable Bogotá | 0.345 | kg CO2/m³ | Documento de ecuaciones. Se registra, pero no suma al inventario porque la herramienta ECCI no la incluye |
+| RE1 | Aprovechamiento de residuos | −0.048 kg CH4/kg × 27 | kg | CAEM |
+| RE1 | Forestal (17 especies) | captura t/ha/año ÷ árboles/ha | kg CO2/árbol | Herramienta ECCI |
+
+El CO2 biogénico (gas `CO2_BIO`) no suma al total: cada cálculo lo devuelve aparte en `biogenic_tco2e`, como en la hoja R_Biogenicas. La prueba `Inventory2022ValidationTestCase` carga los datos 2022 de la herramienta y comprueba que el resultado es 304.342 t CO2e netas, igual que el informe.
 
 ### Incertidumbre
 
@@ -145,11 +157,11 @@ calculation_service.py
   ├── _calculate_mobile()          ED2 — Combustión móvil (flota)
   ├── _calculate_industrial()      ED3 — Procesos industriales
   ├── _calculate_fugitive()        ED4 — Emisiones fugitivas (extintores)
+  ├── _calculate_lubricants()      ED5 — Lubricantes
   ├── _calculate_electricity()     EI1 — Electricidad
   ├── _calculate_transport()       EI2 — Transporte y hospedaje + vuelos
   ├── _calculate_paper()           EI3 — Consumo de papel
   ├── _calculate_waste()           EI4 — Residuos sólidos
-  ├── _calculate_water()           EI5 — Consumo de agua potable
   └── _calculate_removals()        RE1 — Remociones (forestal + reciclaje)
         ↓
 [CalculationRun persistido con trazas auditables]
@@ -200,14 +212,16 @@ calculation_service.py
 | `/api/vehicle-fleet/` | Flota vehicular |
 | `/api/extinguisher-refill/` | Recargas de extintores |
 | `/api/electricity/` | Consumo eléctrico (kWh) |
-| `/api/flights/` | Vuelos (origen, destino, pasajeros, km) |
+| `/api/flights/` | Vuelos (origen, destino, pasajeros, ida y regreso) |
 | `/api/field-practice/` | Prácticas de campo (km) |
 | `/api/ground-transport/` | Transporte terrestre |
 | `/api/lodging/` | Hospedaje (noches) |
 | `/api/paper/` | Consumo de papel (resmas) |
 | `/api/waste/` | Residuos sólidos (kg) |
 | `/api/water/` | Consumo de agua (m³) |
-| `/api/removals/` | Remociones de carbono (tCO2e) |
+| `/api/removals/` | Remociones: árboles por especie, kg aprovechados o tCO2e directo |
+| `/api/industrial-processes/` | Procesos industriales (t) |
+| `/api/lubricants/` | Aceites y grasas lubricantes |
 
 Todos los endpoints de datos soportan filtros `?period_id=1&campus_id=1`.
 

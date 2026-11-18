@@ -30,6 +30,8 @@ router.register(r'ground-transport', views.GroundTransportRecordViewSet)
 router.register(r'lodging', views.LodgingRecordViewSet)
 router.register(r'field-practice', views.FieldPracticeTripViewSet)
 router.register(r'removals', views.RemovalRecordViewSet)
+router.register(r'industrial-processes', views.IndustrialProcessEmissionViewSet)
+router.register(r'lubricants', views.LubricantConsumptionViewSet)
 router.register(r'calculation-runs-history', views.CalculationRunHistoryViewSet, basename='calculation-runs-history')
 
 urlpatterns = router.urls + [

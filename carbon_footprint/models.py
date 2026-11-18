@@ -261,6 +261,7 @@ class PaperConsumption(models.Model):
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, related_name="paper_records")
     size = models.ForeignKey(PaperWeightCatalog, on_delete=models.PROTECT, related_name="paper_usages")
     reams = models.PositiveIntegerField()
+    recycled = models.BooleanField(default=False)  # papel reciclado vs. bond blanco
     emission_factor = models.ForeignKey(
         EmissionFactor, on_delete=models.SET_NULL, null=True, blank=True,
         related_name="paper_usages"
@@ -295,6 +296,7 @@ class Flight(models.Model):
     origin = models.CharField(max_length=100)
     destination = models.CharField(max_length=100)
     passengers = models.PositiveIntegerField(default=1)
+    round_trip = models.BooleanField(default=True)  # ida y regreso vs. un trayecto
     km = models.FloatField(blank=True, null=True)
     emission_factor = models.ForeignKey(
         EmissionFactor, on_delete=models.SET_NULL, null=True, blank=True,
@@ -360,7 +362,15 @@ class RemovalRecord(models.Model):
     campus = models.ForeignKey(Campus, on_delete=models.CASCADE, related_name="removal_records")
     rtype = models.CharField(max_length=100)  # 'forestal', 'residuos_aprovechables', etc.
     description = models.CharField(max_length=200, blank=True, null=True)
-    tco2e = models.FloatField()
+    # Calculated removals: trees planted (forestal) or kg of recovered waste (aprovechamiento).
+    activity_value = models.FloatField(blank=True, null=True)
+    activity_unit = models.CharField(max_length=20, blank=True, null=True)
+    emission_factor = models.ForeignKey(
+        EmissionFactor, on_delete=models.SET_NULL, null=True, blank=True,
+        related_name="removal_usages"
+    )
+    # Direct entry, used only when no activity is given.
+    tco2e = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.rtype} - {self.tco2e} tCO2e"
@@ -390,7 +400,9 @@ class CalculationRun(models.Model):
     gross_tco2e = models.FloatField(default=0)
     removals_tco2e = models.FloatField(default=0)
     net_tco2e = models.FloatField(default=0)
+    biogenic_tco2e = models.FloatField(default=0)
     uncertainty_pct = models.FloatField(default=0)
+    gas_breakdown = models.JSONField(default=dict, blank=True)
     warnings = models.JSONField(default=list, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -409,7 +421,9 @@ class CalculationSourceTrace(models.Model):
     source_code = models.CharField(max_length=50)
     source_name = models.CharField(max_length=150)
     total_tco2e = models.FloatField(default=0)
+    biogenic_tco2e = models.FloatField(default=0)
     uncertainty_pct = models.FloatField(default=0)
+    gas_breakdown = models.JSONField(default=dict, blank=True)
     warnings = models.JSONField(default=list, blank=True)
     traces = models.JSONField(default=list, blank=True)
 

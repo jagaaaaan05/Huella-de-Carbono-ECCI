@@ -5,7 +5,8 @@ from .models import (
     ElectricityConsumption, NaturalGasConsumption, FuelConsumption,
     VehicleFleetConsumption, ExtinguisherRefill, WasteRecord,
     PaperConsumption, WaterConsumption, Flight, GroundTransportRecord, LodgingRecord,
-    FieldPracticeTrip, RemovalRecord, CalculationRun, CalculationSourceTrace
+    FieldPracticeTrip, RemovalRecord, CalculationRun, CalculationSourceTrace,
+    IndustrialProcessEmission, LubricantConsumption
 )
 
 
@@ -245,7 +246,7 @@ class PaperConsumptionSerializer(serializers.ModelSerializer):
         model = PaperConsumption
         fields = [
             'id', 'period', 'period_id', 'campus', 'campus_id', 'size', 'size_id',
-            'reams', 'emission_factor', 'emission_factor_id', 'total_tco2e'
+            'reams', 'recycled', 'emission_factor', 'emission_factor_id', 'total_tco2e'
         ]
 
     def validate_reams(self, value):
@@ -286,8 +287,13 @@ class FlightSerializer(serializers.ModelSerializer):
         model = Flight
         fields = [
             'id', 'period', 'period_id', 'description', 'origin', 'destination',
-            'passengers', 'km', 'emission_factor', 'emission_factor_id', 'total_tco2e'
+            'passengers', 'round_trip', 'km', 'emission_factor', 'emission_factor_id', 'total_tco2e'
         ]
+
+    def validate_passengers(self, value):
+        if value is not None and value < 1:
+            raise serializers.ValidationError("passengers debe ser al menos 1.")
+        return value
 
 
 class FieldPracticeTripSerializer(serializers.ModelSerializer):
@@ -313,17 +319,36 @@ class FieldPracticeTripSerializer(serializers.ModelSerializer):
 class RemovalRecordSerializer(serializers.ModelSerializer):
     period = PeriodSerializer(read_only=True)
     campus = CampusSerializer(read_only=True)
+    emission_factor = EmissionFactorSerializer(read_only=True)
 
     period_id = serializers.PrimaryKeyRelatedField(queryset=Period.objects.all(), source='period', write_only=True)
     campus_id = serializers.PrimaryKeyRelatedField(queryset=Campus.objects.all(), source='campus', write_only=True)
+    emission_factor_id = serializers.PrimaryKeyRelatedField(
+        queryset=EmissionFactor.objects.all(), source='emission_factor', write_only=True, required=False, allow_null=True
+    )
 
     class Meta:
         model = RemovalRecord
-        fields = ['id', 'period', 'period_id', 'campus', 'campus_id', 'rtype', 'tco2e']
+        fields = [
+            'id', 'period', 'period_id', 'campus', 'campus_id', 'rtype', 'description',
+            'activity_value', 'activity_unit', 'emission_factor', 'emission_factor_id', 'tco2e'
+        ]
 
     def validate_tco2e(self, value):
         # Removals are stored as positive values; sign inversion happens at reporting layer.
         return validate_positive(value, 'tco2e')
+
+    def validate_activity_value(self, value):
+        return validate_positive(value, 'activity_value')
+
+    def validate(self, attrs):
+        activity = attrs.get('activity_value', getattr(self.instance, 'activity_value', None))
+        tco2e = attrs.get('tco2e', getattr(self.instance, 'tco2e', None))
+        if activity is None and tco2e is None:
+            raise serializers.ValidationError(
+                "Indica la actividad (árboles o kg aprovechados) o la remoción en tCO2e."
+            )
+        return attrs
 
 
 class GroundTransportRecordSerializer(serializers.ModelSerializer):
@@ -370,12 +395,56 @@ class LodgingRecordSerializer(serializers.ModelSerializer):
         return validate_positive(value, 'nights')
 
 
+class IndustrialProcessEmissionSerializer(serializers.ModelSerializer):
+    period = PeriodSerializer(read_only=True)
+    campus = CampusSerializer(read_only=True)
+    emission_factor = EmissionFactorSerializer(read_only=True)
+
+    period_id = serializers.PrimaryKeyRelatedField(queryset=Period.objects.all(), source='period', write_only=True)
+    campus_id = serializers.PrimaryKeyRelatedField(queryset=Campus.objects.all(), source='campus', write_only=True)
+    emission_factor_id = serializers.PrimaryKeyRelatedField(
+        queryset=EmissionFactor.objects.all(), source='emission_factor', write_only=True, required=False, allow_null=True
+    )
+
+    class Meta:
+        model = IndustrialProcessEmission
+        fields = [
+            'id', 'period', 'period_id', 'campus', 'campus_id', 'description', 'process_type',
+            'unit', 'activity', 'emission_factor', 'emission_factor_id', 'total_tco2e'
+        ]
+
+    def validate_activity(self, value):
+        return validate_positive(value, 'activity')
+
+
+class LubricantConsumptionSerializer(serializers.ModelSerializer):
+    period = PeriodSerializer(read_only=True)
+    campus = CampusSerializer(read_only=True)
+    emission_factor = EmissionFactorSerializer(read_only=True)
+
+    period_id = serializers.PrimaryKeyRelatedField(queryset=Period.objects.all(), source='period', write_only=True)
+    campus_id = serializers.PrimaryKeyRelatedField(queryset=Campus.objects.all(), source='campus', write_only=True)
+    emission_factor_id = serializers.PrimaryKeyRelatedField(
+        queryset=EmissionFactor.objects.all(), source='emission_factor', write_only=True, required=False, allow_null=True
+    )
+
+    class Meta:
+        model = LubricantConsumption
+        fields = [
+            'id', 'period', 'period_id', 'campus', 'campus_id', 'description',
+            'unit', 'amount', 'emission_factor', 'emission_factor_id', 'total_tco2e'
+        ]
+
+    def validate_amount(self, value):
+        return validate_positive(value, 'amount')
+
+
 class CalculationSourceTraceSerializer(serializers.ModelSerializer):
     class Meta:
         model = CalculationSourceTrace
         fields = [
-            'id', 'source_code', 'source_name', 'total_tco2e',
-            'uncertainty_pct', 'warnings', 'traces'
+            'id', 'source_code', 'source_name', 'total_tco2e', 'biogenic_tco2e',
+            'uncertainty_pct', 'gas_breakdown', 'warnings', 'traces'
         ]
 
 
@@ -388,6 +457,6 @@ class CalculationRunSerializer(serializers.ModelSerializer):
         model = CalculationRun
         fields = [
             'id', 'period', 'campus', 'method_profile', 'include_traces',
-            'gross_tco2e', 'removals_tco2e', 'net_tco2e', 'uncertainty_pct',
-            'warnings', 'created_at', 'source_traces'
+            'gross_tco2e', 'removals_tco2e', 'net_tco2e', 'biogenic_tco2e', 'uncertainty_pct',
+            'gas_breakdown', 'warnings', 'created_at', 'source_traces'
         ]
